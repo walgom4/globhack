@@ -2,7 +2,14 @@ import 'package:after_layout/after_layout.dart';
 // import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:sstsoft/controller/menu/arl_info_widget.dart';
+import 'package:sstsoft/controller/menu/end_journey_widget.dart';
+import 'package:sstsoft/controller/menu/feeling_bad_widget.dart';
+import 'package:sstsoft/controller/menu/information_widget.dart';
+import 'package:sstsoft/controller/menu/start_journey_widget.dart';
 import 'package:sstsoft/controller/menu/wash_hands_widget.dart';
+import 'package:sstsoft/controller/transition/fade_route.dart';
+import 'package:sstsoft/service/login_service.dart';
 
 class PrincipalWidget extends StatefulWidget {
   static const String name = '/principal';
@@ -18,10 +25,11 @@ class _PrincipalWidgetState extends State<PrincipalWidget>
   ///Retain scaffold context to view messages
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  @override
-  void afterFirstLayout(BuildContext context) {
-    // TODO: implement afterFirstLayout
-  }
+  ///Validate if work journey is finished
+  bool journeyStarted = true;
+
+  ///Login service reference
+  LoginService loginService = LoginService();
 
   @override
   void initState() {
@@ -42,6 +50,13 @@ class _PrincipalWidgetState extends State<PrincipalWidget>
     //   print("Settings registered: $settings");
     // });
     // _firebaseMessaging.getToken().then((String token) async {});
+    super.initState();
+  }
+
+  @override
+  void afterFirstLayout(BuildContext context) async {
+    this.journeyStarted = await loginService.returnIfUserJourneyIsStarted();
+    setState(() {});
   }
 
   @override
@@ -101,7 +116,7 @@ class _PrincipalWidgetState extends State<PrincipalWidget>
               color: Colors.blue,
               onTap: () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => WashHandsWidget()),
+                FadeRoute(page: WashHandsWidget()),
               ),
             ),
             makeDashboardItem(
@@ -113,7 +128,10 @@ class _PrincipalWidgetState extends State<PrincipalWidget>
                 color: Colors.white,
               ),
               color: Colors.red,
-              onTap: () {},
+              onTap: () => Navigator.push(
+                context,
+                FadeRoute(page: FeelingBadWidget()),
+              ),
             ),
             makeDashboardItem(
               new Text("ARL",
@@ -124,7 +142,10 @@ class _PrincipalWidgetState extends State<PrincipalWidget>
                 color: Colors.white,
               ),
               color: Colors.orange,
-              onTap: () {},
+              onTap: () => Navigator.push(
+                context,
+                FadeRoute(page: ArlInfoWidget()),
+              ),
             ),
             makeDashboardItem(
               new Text("Información",
@@ -135,7 +156,10 @@ class _PrincipalWidgetState extends State<PrincipalWidget>
                 color: Colors.white,
               ),
               color: Colors.cyan,
-              onTap: () {},
+              onTap: () => Navigator.push(
+                context,
+                FadeRoute(page: InformationWidget()),
+              ),
             ),
             makeDashboardItem(
               new Text("Coronapp",
@@ -149,15 +173,24 @@ class _PrincipalWidgetState extends State<PrincipalWidget>
               onTap: () {},
             ),
             makeDashboardItem(
-              new Text("Finalizar jornada",
+              new Text(
+                  this.journeyStarted ? "Finalizar Jornada" : "Iniciar Jornada",
                   style: new TextStyle(fontSize: 18.0, color: Colors.white)),
               Icon(
-                MdiIcons.close,
+                this.journeyStarted ? MdiIcons.close : MdiIcons.openInNew,
                 size: 40.0,
                 color: Colors.white,
               ),
               color: Colors.purple,
-              onTap: () {},
+              onTap: () {
+                Widget forwardWidget = this.journeyStarted
+                    ? EndJourneyWidget()
+                    : StartJourneyWidget();
+                Navigator.push(
+                  context,
+                  FadeRoute(page: forwardWidget),
+                );
+              },
             ),
           ],
         ),
