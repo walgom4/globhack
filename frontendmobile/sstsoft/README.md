@@ -1,6 +1,6 @@
 # sstsoft
 
-A new Flutter project.
+SSTSoft flutter implementation for Globack event
 
 ## Getting Started
 
