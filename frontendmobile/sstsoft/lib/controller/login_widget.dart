@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sstsoft/cons/general_cons.dart';
 import 'package:sstsoft/controller/forgot_password_widget.dart';
+import 'package:sstsoft/controller/register_widget.dart';
 import 'package:sstsoft/util/bezierwidget.dart';
 
 class LoginWidget extends StatefulWidget {
@@ -117,8 +118,8 @@ class _LoginWidgetState extends State<LoginWidget> {
   Widget _createAccountLabel() {
     return InkWell(
       onTap: () {
-        // Navigator.push(
-        //     context, MaterialPageRoute(builder: (context) => SignUpPage()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => RegisterWidget()));
       },
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 20),

@@ -7,5 +7,7 @@ class GeneralCons{
   static final secondaryColor = Color(0xffe46b10);
   ///General degrade color for UX
   static final degradeColor = [baseColor,secondaryColor];
+  ///Initial date for all datepickers
+  static final DateTime generalInitialDate = DateTime(1900);
 
 }

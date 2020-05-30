@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sstsoft/cons/general_cons.dart';
-import 'package:sstsoft/controller/login_widget.dart';
 import 'package:sstsoft/util/bezierwidget.dart';
 
 class ForgotPasswordWidget extends StatefulWidget {
