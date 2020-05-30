@@ -60,4 +60,4 @@ class healthRegisterSerializer (serializers.ModelSerializer):
         'nasal_congestion', 'fatigue', 'difficult_breathe', 'muscle_pain', 
         'diarrhea', 'threw_up', 'other', 'user_fk_health', 'temperature', 
         'photo_temperature', 'photo_workspace', 'photo_selfie', 'observations',
-        'health_condition', 'medical_file', 'ill', 'who_ill')
+        'health_condition', 'medical_file', 'ill', 'who_ill', 'date')
