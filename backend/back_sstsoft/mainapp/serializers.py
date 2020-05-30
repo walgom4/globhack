@@ -7,8 +7,11 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('url', 'identification', 'username', 'idType_fk_user', 'email', 'password',
-                'name','last_name','phone','birthday','gender_fk_user',
-                'eps_fk_user','job','boss','area_fk_user', 'photo')
+                'name','last_name','phone', 'address','birthday','gender_fk_user',
+                'eps_fk_user','job','boss','area_fk_user', 'photo', 'transport_fk_user', 
+                'risk', 'who_risk', 'health_system', 'who_health', 
+                'emergency_contact_name', 'emergency_contact_relationship', 
+                'emergency_contact_phone')
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
@@ -53,4 +56,8 @@ class genderSerializer (serializers.ModelSerializer):
 class healthRegisterSerializer (serializers.ModelSerializer):
     class Meta:
         model = healthRegister
-        fields = ('url', 'id', 'flu', 'fever', 'cough', 'sore_throat', 'nasal_congestion', 'fatigue', 'difficult_breathe', 'muscle_pain', 'diarrhea', 'threw_up', 'other', 'user_fk_health', 'temperature', 'photo_temperature', 'photo_workspace', 'photo_selfie')
+        fields = ('url', 'id', 'flu', 'fever', 'cough', 'sore_throat', 
+        'nasal_congestion', 'fatigue', 'difficult_breathe', 'muscle_pain', 
+        'diarrhea', 'threw_up', 'other', 'user_fk_health', 'temperature', 
+        'photo_temperature', 'photo_workspace', 'photo_selfie', 'observations',
+        'health_condition', 'medical_file', 'ill', 'who_ill')

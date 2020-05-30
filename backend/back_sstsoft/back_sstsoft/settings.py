@@ -137,7 +137,7 @@ USE_TZ = True
 
 STATIC_URL = '/globhack_static/'
 MEDIA_ROOT = 'C:/Users/walgom/Documents/elxampp/htdocs/globhack_static/media'
-MEDIA_URL = 'http://localhost:81/globhack_static/media/'
+MEDIA_URL = 'http://0dcbe4c5a39f.ngrok.io/globhack_static/media/'
 STATIC_ROOT = 'C:/Users/walgom/Documents/elxampp/htdocs/globhack_static'
 STATICFILES_DIRS = (
     'C:/Users/walgom/Documents/elxampp/htdocs/globhack_static/media/',

@@ -30,6 +30,13 @@ class eps(models.Model):
     def __str__(self):
         return "{}".format(self.id)
 
+class transport(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return "{}".format(self.id)
+
 #user model
 class User(AbstractUser):
     identification = models.CharField(
@@ -42,6 +49,7 @@ class User(AbstractUser):
     name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     phone = models.CharField(max_length=50)
+    address = models.CharField(max_length=150, blank=True, null=True)
     birthday = models.DateField(blank=True, null=True)
     gender_fk_user = models.ForeignKey(
         gender, on_delete=models.CASCADE, null=True)
@@ -51,6 +59,18 @@ class User(AbstractUser):
     boss = models.CharField(max_length=100, blank=True, null=True)
     area_fk_user = models.ForeignKey(area, on_delete=models.CASCADE, null=True)
     photo = models.ImageField(upload_to='users/', null=True, blank=True)
+    transport_fk_user = models.ForeignKey(
+        transport, on_delete=models.CASCADE, null=True)
+    #risk permanent contacts
+    risk = models.BooleanField(default=False)
+    who_risk = models.CharField(max_length=150, blank=True, null=True)
+    health_system = models.BooleanField(default=False)
+    who_health = models.CharField(max_length=150, blank=True, null=True)
+    #emergency contact
+    emergency_contact_name = models.CharField(max_length=150, blank=True, null=True)
+    emergency_contact_relationship = models.CharField(max_length=150, blank=True, null=True)
+    emergency_contact_phone = models.CharField(max_length=150, blank=True, null=True)
+    #addres
     validated = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'identification'
@@ -78,6 +98,13 @@ class healthRegister(models.Model):
     photo_temperature = models.ImageField(upload_to='health_register/', null=True, blank=True)
     photo_workspace = models.ImageField(upload_to='health_register/', null=True, blank=True)
     photo_selfie = models.ImageField(upload_to='health_register/', null=True, blank=True)
+    observations = models.CharField(max_length=2000, blank=True, null=True)
+    #register 
+    health_condition = models.BooleanField(default=False)
+    medical_file = models.FileField(upload_to='health_register/', null=True, blank=True)
+    #risk contact
+    ill = models.BooleanField(default=False)
+    who_ill = models.CharField(max_length=150, blank=True, null=True)
 
     def __str__(self):
         return "{}".format(self.id)

@@ -34,7 +34,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"12345678\",\r\n    \"password\": \"12345678\"\r\n}"
+					"raw": "{\r\n    \"username\": \"1016031266\",\r\n    \"password\": \"1016031266\"\r\n}"
 				},
 				"url": {
 					"raw": "{{server_url}}/api/auth/login/",
@@ -334,6 +334,12 @@
 							"type": "text"
 						},
 						{
+							"key": "password",
+							"value": "1016031266",
+							"description": "este campo es opcional de acuerdo a la necesidad, si es una edicion del admin no deberia tocarse este campo",
+							"type": "text"
+						},
+						{
 							"key": "idType_fk_user",
 							"value": "1",
 							"description": "id del tipo de identificacion",
@@ -361,6 +367,11 @@
 							"key": "phone",
 							"value": "3173763714",
 							"description": "telefono",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "Av siempre viva 118",
 							"type": "text"
 						},
 						{
@@ -398,6 +409,60 @@
 							"value": "1",
 							"description": "area o unidad",
 							"type": "text"
+						},
+						{
+							"key": "photo",
+							"description": "imagen de perfil del usuario",
+							"type": "file",
+							"src": ""
+						},
+						{
+							"key": "transport_fk_user",
+							"value": "1",
+							"description": "id tipo de transporte",
+							"type": "text"
+						},
+						{
+							"key": "risk",
+							"value": "true",
+							"description": "¿Convives con personas mayores de 60 años y/o que presenten alguna alteración (enfermedad pulmonar -Epoc-, enfermedad cardíaca, hipertensión arterial, enfermedad renal, diabetes, enfermedades inmunosupresoras, cáncer, trasplante previo, lupus, entre otras) en su salud?",
+							"type": "text"
+						},
+						{
+							"key": "who_risk",
+							"value": "padre, hijo",
+							"description": "parentezco",
+							"type": "text"
+						},
+						{
+							"key": "health_system",
+							"value": "false",
+							"description": "¿Convives con personas que estén trabajando de manera presencial en los servicios o atención de salud?",
+							"type": "text"
+						},
+						{
+							"key": "who_health",
+							"value": "hermana",
+							"description": "parentezco",
+							"type": "text"
+						},
+						{
+							"key": "emergency_contact_name",
+							"value": "Mario Gomez",
+							"description": "persona de contacto",
+							"type": "text"
+						},
+						{
+							"key": "emergency_contact_relationship",
+							"value": "padre",
+							"description": "parentezco",
+							"type": "text"
+						},
+						{
+							"key": "emergency_contact_phone",
+							"value": "31555555555",
+							"description": "telefono contacto",
+							"type": "text"
 						}
 					]
 				},
@@ -409,6 +474,167 @@
 					"path": [
 						"api",
 						"user",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save dayli form",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "12345678",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "flu",
+							"value": "false",
+							"type": "text"
+						},
+						{
+							"key": "fever",
+							"value": "false",
+							"type": "text"
+						},
+						{
+							"key": "cough",
+							"value": "false",
+							"type": "text"
+						},
+						{
+							"key": "sore_throat",
+							"value": "false",
+							"type": "text"
+						},
+						{
+							"key": "nasal_congestion",
+							"value": "false",
+							"type": "text"
+						},
+						{
+							"key": "fatigue",
+							"value": "false",
+							"type": "text"
+						},
+						{
+							"key": "difficult_breathe",
+							"value": "false",
+							"type": "text"
+						},
+						{
+							"key": "muscle_pain",
+							"value": "false",
+							"type": "text"
+						},
+						{
+							"key": "diarrhea",
+							"value": "false",
+							"type": "text"
+						},
+						{
+							"key": "threw_up",
+							"value": "false",
+							"type": "text"
+						},
+						{
+							"key": "other",
+							"value": "tengo ceguera",
+							"type": "text"
+						},
+						{
+							"key": "user_fk_health",
+							"value": "1",
+							"description": "id del usuario ",
+							"type": "text"
+						},
+						{
+							"key": "temperature",
+							"value": "38",
+							"description": "temperatura",
+							"type": "text"
+						},
+						{
+							"key": "photo_temperature",
+							"description": "foto del termometro",
+							"type": "file",
+							"src": ""
+						},
+						{
+							"key": "photo_workspace",
+							"description": "foto del area de trabajo",
+							"type": "file",
+							"src": ""
+						},
+						{
+							"key": "photo_selfie",
+							"description": "foto tapabocas",
+							"type": "file",
+							"src": ""
+						},
+						{
+							"key": "observations",
+							"value": "observaciones",
+							"description": "observaciones",
+							"type": "text"
+						},
+						{
+							"key": "health_condition",
+							"value": "paro cardiaco",
+							"description": "condicion medica pre-existente",
+							"type": "text"
+						},
+						{
+							"key": "medical_file",
+							"description": "archivo medico",
+							"type": "file",
+							"src": ""
+						},
+						{
+							"key": "ill",
+							"value": "true",
+							"description": "contacto con una persona sospechosa o que se ha contagiado",
+							"type": "text"
+						},
+						{
+							"key": "who_ill",
+							"value": "hijo",
+							"description": "parentezco de la persona que se contagio con el usuario",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{server_url}}/api/healthRegister/",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"api",
+						"healthRegister",
 						""
 					]
 				}
