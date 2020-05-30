@@ -42,7 +42,7 @@ class User(AbstractUser):
     name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     phone = models.CharField(max_length=50)
-    birthday = models.DateTimeField(blank=True, null=True)
+    birthday = models.DateField(blank=True, null=True)
     gender_fk_user = models.ForeignKey(
         gender, on_delete=models.CASCADE, null=True)
     eps_fk_user = models.ForeignKey(
