@@ -72,29 +72,16 @@ class _PrincipalWidgetState extends State<PrincipalWidget>
           // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
           children: <Widget>[
-            DrawerHeader(
-              child: Text('Drawer Header'),
-              decoration: BoxDecoration(
-                color: Colors.purple,
-              ),
+            _createHeader(),
+            _createDrawerItem(
+              icon: Icons.settings,
+              text: "Configuración",
+              onTap: () {},
             ),
-            ListTile(
-              title: Text('Item 1'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('Item 2'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
-              },
+            _createDrawerItem(
+              icon: Icons.close,
+              text: "Cerrar sesión",
+              onTap: () {},
             ),
           ],
         ),
@@ -223,6 +210,51 @@ class _PrincipalWidgetState extends State<PrincipalWidget>
           ),
         ),
       ),
+    );
+  }
+
+  Widget _createHeader() {
+    return DrawerHeader(
+      margin: EdgeInsets.zero,
+      padding: EdgeInsets.zero,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          SizedBox(
+            height: 20,
+          ),
+          CircleAvatar(
+            minRadius: 40,
+            backgroundColor: Colors.grey,
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Text(
+            "Nombre de usuario",
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: 20.0,
+                fontWeight: FontWeight.w500),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _createDrawerItem(
+      {IconData icon, String text, GestureTapCallback onTap}) {
+    return ListTile(
+      title: Row(
+        children: <Widget>[
+          Icon(icon),
+          Padding(
+            padding: EdgeInsets.only(left: 8.0),
+            child: Text(text),
+          )
+        ],
+      ),
+      onTap: onTap,
     );
   }
 }

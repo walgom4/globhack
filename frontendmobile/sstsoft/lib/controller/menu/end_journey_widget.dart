@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sstsoft/cons/data_cons.dart';
+import 'package:sstsoft/cons/general_cons.dart';
 
 class EndJourneyWidget extends StatefulWidget {
   @override
@@ -8,6 +10,7 @@ class EndJourneyWidget extends StatefulWidget {
 class _EndJourneyWidgetState extends State<EndJourneyWidget> {
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
