@@ -9,3 +9,6 @@ Author.
 Luis Jairo Chaves - Developer
 Luis Carlos Martinez - Developer
 Walter Gomez - Developer
+Alejandra García
+Milena Martinez
+Sebastian Patiño
