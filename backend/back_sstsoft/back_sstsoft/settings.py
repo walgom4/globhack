@@ -141,6 +141,8 @@ MEDIA_URL = 'http://localhost:81/globhack_static/media/'
 STATIC_ROOT = 'C:/Users/walgom/Documents/elxampp/htdocs/globhack_static'
 STATICFILES_DIRS = (
     'C:/Users/walgom/Documents/elxampp/htdocs/globhack_static/media/',
+    'C:/Users/walgom/Documents/elxampp/htdocs/globhack_static/media/users',
+    'C:/Users/walgom/Documents/elxampp/htdocs/globhack_static/media/health_register',
 )
 
 CORS_ORIGIN_ALLOW_ALL = True

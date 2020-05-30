@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from mainapp.models import User, area, eps, gender, idType
+from mainapp.models import User, area, eps, gender, idType, healthRegister
 
 # user serializer
 class UserSerializer(serializers.ModelSerializer):
@@ -8,7 +8,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('url', 'identification', 'username', 'idType_fk_user', 'email', 'password',
                 'name','last_name','phone','birthday','gender_fk_user',
-                'eps_fk_user','job','boss','area_fk_user')
+                'eps_fk_user','job','boss','area_fk_user', 'photo')
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
@@ -37,13 +37,20 @@ class epsSerializer (serializers.ModelSerializer):
         model = eps
         fields = ('url', 'id',
                   'name')
+
 class idTypeSerializer (serializers.ModelSerializer):
     class Meta:
         model = idType
         fields = ('url', 'id',
                   'name')
+
 class genderSerializer (serializers.ModelSerializer):
     class Meta:
         model = gender
         fields = ('url', 'id',
                   'name')
+
+class healthRegisterSerializer (serializers.ModelSerializer):
+    class Meta:
+        model = healthRegister
+        fields = ('url', 'id', 'flu', 'fever', 'cough', 'sore_throat', 'nasal_congestion', 'fatigue', 'difficult_breathe', 'muscle_pain', 'diarrhea', 'threw_up', 'other', 'user_fk_health', 'temperature', 'photo_temperature', 'photo_workspace', 'photo_selfie')

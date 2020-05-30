@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from mainapp.serializers import UserSerializer, areaSerializer, epsSerializer, genderSerializer, idTypeSerializer
-from mainapp.models import User, area, eps, gender, idType
+from mainapp.serializers import UserSerializer, areaSerializer, epsSerializer, genderSerializer, idTypeSerializer, healthRegisterSerializer
+from mainapp.models import User, area, eps, gender, idType, healthRegister
 
 # start restframework
 from rest_framework import viewsets, generics
@@ -79,6 +79,21 @@ class genderViewSet(viewsets.ModelViewSet):
 class idTypeViewSet(viewsets.ModelViewSet):
     queryset = idType.objects.all()
     serializer_class = idTypeSerializer
+
+    # permisos
+    def get_permissions(self):
+        permission_classes = []
+        if self.action == 'create':
+            permission_classes = [AllowAny]
+        elif self.action == 'retrieve' or self.action == 'update' or self.action == 'partial_update':
+            permission_classes = [AllowAny]
+        elif self.action == 'list' or self.action == 'destroy':
+            permission_classes = [AllowAny]
+        return [permission() for permission in permission_classes]
+
+class healthRegisterViewSet(viewsets.ModelViewSet):
+    queryset = healthRegister.objects.all()
+    serializer_class = healthRegisterSerializer
 
     # permisos
     def get_permissions(self):
