@@ -17,9 +17,11 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
 from django.conf.urls.static import static
+from rest_framework.authtoken import views as rest_auth_views
 import back_sstsoft.settings as settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^api/', include('mainapp.urls')),
+    url(r'^api/auth/', include('rest_auth.urls')),
 ]+ static(settings.STATIC_URL, document_root=settings.MEDIA_ROOT, show_indexes=True)
