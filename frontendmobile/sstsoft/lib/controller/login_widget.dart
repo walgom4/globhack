@@ -117,9 +117,8 @@ class _LoginWidgetState extends State<LoginWidget> {
 
   Widget _createAccountLabel() {
     return InkWell(
-      onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => RegisterWidget()));
+      onTap: () async {
+        await goToRegister();
       },
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 20),
@@ -208,7 +207,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                         SizedBox(height: 20),
                         _submitButton(),
                         GestureDetector(
-                          onTap: () async{
+                          onTap: () async {
                             await goToForgotPassword();
                           },
                           child: Container(
@@ -239,7 +238,13 @@ class _LoginWidgetState extends State<LoginWidget> {
     }
   }
 
+  goToRegister() async {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => RegisterWidget()));
+  }
+
   goToForgotPassword() async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => ForgotPasswordWidget()));
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => ForgotPasswordWidget()));
   }
 }

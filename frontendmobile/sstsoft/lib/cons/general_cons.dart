@@ -9,5 +9,7 @@ class GeneralCons{
   static final degradeColor = [baseColor,secondaryColor];
   ///Initial date for all datepickers
   static final DateTime generalInitialDate = DateTime(1900);
+  ///General text style
+  static final TextStyle generalTextStyle = TextStyle(fontSize: 15);
 
 }
