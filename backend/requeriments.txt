@@ -5,3 +5,5 @@ django-filter
 pillow
 django-cors-headers
 psycopg2
+fcm-django
+django-rest-auth

@@ -1,0 +1,419 @@
+{
+	"info": {
+		"_postman_id": "9b396650-37d3-408f-8dd7-7225506e80a2",
+		"name": "globhack",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "12345678",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"12345678\",\r\n    \"password\": \"12345678\"\r\n}"
+				},
+				"url": {
+					"raw": "{{server_url}}/api/auth/login/",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user list",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "12345678",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{server_url}}/api/user/",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"api",
+						"user",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get area list",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "12345678",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{server_url}}/api/area/",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"api",
+						"area",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get eps list",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "12345678",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{server_url}}/api/eps/",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"api",
+						"eps",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get gender list",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "12345678",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{server_url}}/api/gender/",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"api",
+						"gender",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get id type list",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "12345678",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{server_url}}/api/idType/",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"api",
+						"idType",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save user",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "12345678",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "identification",
+							"value": "1016031266",
+							"description": "identificacion",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "1016031266",
+							"description": "identificacion",
+							"type": "text"
+						},
+						{
+							"key": "idType_fk_user",
+							"value": "1",
+							"description": "id del tipo de identificacion",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "walgom4@msn.com",
+							"description": "correo",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "walter",
+							"description": "nombre",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "gomez",
+							"description": "apellido",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "3173763714",
+							"description": "telefono",
+							"type": "text"
+						},
+						{
+							"key": "birthday",
+							"value": "1990-12-15",
+							"description": "fecha naciomiento",
+							"type": "text"
+						},
+						{
+							"key": "gender_fk_user",
+							"value": "1",
+							"description": "id del genero",
+							"type": "text"
+						},
+						{
+							"key": "eps_fk_user",
+							"value": "1",
+							"description": "id de la eps",
+							"type": "text"
+						},
+						{
+							"key": "job",
+							"value": "desarrollador",
+							"description": "cargo",
+							"type": "text"
+						},
+						{
+							"key": "boss",
+							"value": "Raul Contreras",
+							"description": "jefe inmediato",
+							"type": "text"
+						},
+						{
+							"key": "area_fk_user",
+							"value": "1",
+							"description": "area o unidad",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{server_url}}/api/user/",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"api",
+						"user",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
