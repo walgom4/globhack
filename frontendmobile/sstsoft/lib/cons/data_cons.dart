@@ -31,7 +31,17 @@ class DataCons {
     "workTransportQuestion": "¿Cómo te desplazas al lugar de trabajo?",
   };
 
-  static final String disclaimer = "La identificación temprana de personas sintomáticos es fundamental para facilitar el seguimiento de casos. Con el diligenciamiento y firma del presente formulario, autorizo de manera expresa e informada a EMPRESA 01, para que recolecte, almacene, use, disponga o eventualmente llegue a transmitir o transferir a nivel nacional o internacional información personal referida a mis datos de identificación, contacto y de salud.\n Tengo conocimiento que los datos serán empleados para la detección temprana de personas sintomáticas mediante control diario de los síntomas asociados con Covid-19. Esta forma parte de las estrategias de prevención, protección y mitigación para todo el personal de la empresa, y en el evento en que se requiera, podrán ser compartidos con las autoridades sanitarias gubernamentales o distritales.";
+  static final String disclaimer =
+      "La identificación temprana de personas sintomáticos es fundamental para facilitar el seguimiento de casos. Con el diligenciamiento y firma del presente formulario, autorizo de manera expresa e informada a EMPRESA 01, para que recolecte, almacene, use, disponga o eventualmente llegue a transmitir o transferir a nivel nacional o internacional información personal referida a mis datos de identificación, contacto y de salud.\n Tengo conocimiento que los datos serán empleados para la detección temprana de personas sintomáticas mediante control diario de los síntomas asociados con Covid-19. Esta forma parte de las estrategias de prevención, protección y mitigación para todo el personal de la empresa, y en el evento en que se requiera, podrán ser compartidos con las autoridades sanitarias gubernamentales o distritales.";
 }
 
 enum yesNo { yes, no }
+
+convertYesNoToValue(yesNo result) {
+  switch (result) {
+    case yesNo.yes:
+      return "Sí";
+    case yesNo.no:
+      return "No";
+  }
+}

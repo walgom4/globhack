@@ -3,6 +3,7 @@ import 'package:sstsoft/cons/data_cons.dart';
 import 'package:sstsoft/cons/general_cons.dart';
 
 class RegisterWidget extends StatefulWidget {
+  static final name = "register";
   @override
   _RegisterWidgetState createState() => _RegisterWidgetState();
 }
