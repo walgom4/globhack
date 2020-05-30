@@ -37,13 +37,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'corsheaders',
+    'mainapp',
+    'django.contrib.postgres',
+    'fcm_django',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -73,10 +79,21 @@ WSGI_APPLICATION = 'back_sstsoft.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'globhack',
+        'ENGINE': 'django.db.backends.postgresql',
+        'USER': 'globhack',
+        'PASSWORD': 'globhack',
+        'PORT':'5433',
+        'HOST':'localhost'
     }
 }
 
@@ -117,4 +134,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/globhack_static/'
+MEDIA_ROOT = 'C:/Users/walgom/Documents/elxampp/htdocs/globhack_static/media'
+MEDIA_URL = 'http://localhost:81/globhack_static/media/'
+STATIC_ROOT = 'C:/Users/walgom/Documents/elxampp/htdocs/globhack_static'
+STATICFILES_DIRS = (
+    'C:/Users/walgom/Documents/elxampp/htdocs/globhack_static/media/',
+)
+
+CORS_ORIGIN_ALLOW_ALL = True
+AUTH_USER_MODEL = 'mainapp.User'
+# enable pagination
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'COERCE_DECIMAL_TO_STRING': False
+}
