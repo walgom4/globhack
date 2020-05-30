@@ -3,12 +3,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sstsoft/cons/general_cons.dart';
 import 'package:sstsoft/controller/forgot_password_widget.dart';
 import 'package:sstsoft/controller/register_widget.dart';
+import 'package:sstsoft/controller/splash_widget.dart';
+import 'package:sstsoft/model/request/user_model.dart';
+import 'package:sstsoft/service/login_service.dart';
 import 'package:sstsoft/util/bezierwidget.dart';
 
 class LoginWidget extends StatefulWidget {
-  LoginWidget({Key key, this.title}) : super(key: key);
-
-  final String title;
+  static final name = "login";
+  LoginWidget({Key key}) : super(key: key);
 
   @override
   _LoginWidgetState createState() => _LoginWidgetState();
@@ -21,9 +23,16 @@ class _LoginWidgetState extends State<LoginWidget> {
   ///Retain scaffold context to view messages
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
+  ////Login user representation
+  final UserModel user = UserModel();
+
+  final String title = "SSTSoft";
+
   Widget _entryField(String title,
       {bool isPassword = false,
-      String validatorMessage = "Por favor ingresa el campo."}) {
+      String validatorMessage = "Por favor ingresa el campo.",
+      String value,
+      void Function(String) onSaved}) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       child: Column(
@@ -43,6 +52,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                 }
                 return null;
               },
+              onSaved: onSaved,
+              initialValue: value,
               obscureText: isPassword,
               decoration: InputDecoration(
                   border: InputBorder.none,
@@ -170,10 +181,23 @@ class _LoginWidgetState extends State<LoginWidget> {
   Widget _emailPasswordWidget() {
     return Column(
       children: <Widget>[
-        _entryField("Número de documento",
-            validatorMessage: "Ingresa el número de documento"),
-        _entryField("Contraseña",
-            isPassword: true, validatorMessage: "Ingresa la contraseña"),
+        _entryField(
+          "Número de documento",
+          validatorMessage: "Ingresa el número de documento",
+          value: user.username,
+          onSaved: (value) {
+            this.user.username = value;
+          },
+        ),
+        _entryField(
+          "Contraseña",
+          isPassword: true,
+          validatorMessage: "Ingresa la contraseña",
+          value: user.password,
+          onSaved: (value) {
+            this.user.password = value;
+          },
+        ),
       ],
     );
   }
@@ -233,8 +257,30 @@ class _LoginWidgetState extends State<LoginWidget> {
 
   submitLogin() async {
     if (_formKey.currentState.validate()) {
-      _scaffoldKey.currentState
-          .showSnackBar(SnackBar(content: Text('Iniciando sesión')));
+      try {
+        LoginService service = new LoginService();
+        _scaffoldKey.currentState
+            .showSnackBar(SnackBar(content: Text('Iniciando sesión')));
+        _formKey.currentState.save();
+        await service.loginUser(user);
+        Navigator.of(context).pushNamedAndRemoveUntil(
+            SplashWidget.name, (Route<dynamic> route) => false);
+      } catch (ex) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            content: Text("Inicio de sesión incorrecto."),
+            actions: <Widget>[
+              FlatButton(
+                child: Text('Ok'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          ),
+        );
+      }
     }
   }
 
