@@ -34,6 +34,8 @@ class eps(models.Model):
 class User(AbstractUser):
     identification = models.CharField(
         blank=True, null=True, max_length=50, unique=True)
+    username = models.CharField(
+        blank=True, null=True, max_length=50, unique=True)
     idType_fk_user = models.ForeignKey(
         idType, on_delete=models.CASCADE, null=True)
     email = models.EmailField(_('email address'), unique=True)
@@ -52,7 +54,7 @@ class User(AbstractUser):
     validated = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'identification'
-    REQUIRED_FIELDS = ['email']
+    REQUIRED_FIELDS = ['username']
 
     def __str__(self):
         return "{}".format(self.identification)
