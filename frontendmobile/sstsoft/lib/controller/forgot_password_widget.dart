@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sstsoft/cons/general_cons.dart';
-import 'package:sstsoft/controller/forgot_password_widget.dart';
+import 'package:sstsoft/controller/login_widget.dart';
 import 'package:sstsoft/util/bezierwidget.dart';
 
-class LoginWidget extends StatefulWidget {
-  LoginWidget({Key key, this.title}) : super(key: key);
-
-  final String title;
+class ForgotPasswordWidget extends StatefulWidget {
+  static const String name = '/forgot';
 
   @override
-  _LoginWidgetState createState() => _LoginWidgetState();
+  _ForgotPasswordWidgetState createState() => _ForgotPasswordWidgetState();
 }
 
-class _LoginWidgetState extends State<LoginWidget> {
-  ///Login form key validation
+class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
+  ///Forgot password form key validation
   final _formKey = GlobalKey<FormState>();
 
   ///Retain scaffold context to view messages
@@ -55,7 +53,7 @@ class _LoginWidgetState extends State<LoginWidget> {
   Widget _submitButton() {
     return GestureDetector(
       onTap: () async {
-        await submitLogin();
+        await submitForgotPasswordForm();
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -75,50 +73,17 @@ class _LoginWidgetState extends State<LoginWidget> {
                 end: Alignment.centerRight,
                 colors: GeneralCons.degradeColor)),
         child: Text(
-          'Iniciar sesión',
+          'Enviar',
           style: TextStyle(fontSize: 20, color: Colors.white),
         ),
       ),
     );
   }
 
-  Widget _divider() {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
-      child: Row(
-        children: <Widget>[
-          SizedBox(
-            width: 20,
-          ),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Divider(
-                thickness: 1,
-              ),
-            ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Divider(
-                thickness: 1,
-              ),
-            ),
-          ),
-          SizedBox(
-            width: 20,
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _createAccountLabel() {
+  Widget _loginAccountLabel() {
     return InkWell(
       onTap: () {
-        // Navigator.push(
-        //     context, MaterialPageRoute(builder: (context) => SignUpPage()));
+        Navigator.pop(context);
       },
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 20),
@@ -128,14 +93,14 @@ class _LoginWidgetState extends State<LoginWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              '¿ No tienes una cuenta ?',
+              '¿ Ya tienes una cuenta ?',
               style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
             ),
             SizedBox(
               width: 10,
             ),
             Text(
-              'Regístrate',
+              'Inicia sesión',
               style: TextStyle(
                   color: Color(0xfff79c4f),
                   fontSize: 13,
@@ -167,13 +132,10 @@ class _LoginWidgetState extends State<LoginWidget> {
     );
   }
 
-  Widget _emailPasswordWidget() {
+  Widget _formWidget() {
     return Column(
       children: <Widget>[
-        _entryField("Número de documento",
-            validatorMessage: "Ingresa el número de documento"),
-        _entryField("Contraseña",
-            isPassword: true, validatorMessage: "Ingresa la contraseña"),
+        _entryField("Cédula", validatorMessage: "Por favor ingresa la cédula"),
       ],
     );
   }
@@ -182,63 +144,59 @@ class _LoginWidgetState extends State<LoginWidget> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
-        key: _scaffoldKey,
-        body: Container(
-          height: height,
-          child: Stack(
-            children: <Widget>[
-              Positioned(
-                  top: -height * .15,
-                  right: -MediaQuery.of(context).size.width * .4,
-                  child: BezierWidget()),
-              Form(
-                key: _formKey,
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        SizedBox(height: height * .2),
-                        _title(),
-                        SizedBox(height: 50),
-                        _emailPasswordWidget(),
-                        SizedBox(height: 20),
-                        _submitButton(),
-                        GestureDetector(
-                          onTap: () async{
-                            await goToForgotPassword();
-                          },
-                          child: Container(
-                            padding: EdgeInsets.symmetric(vertical: 10),
-                            alignment: Alignment.centerRight,
-                            child: Text('Olvidé la contraseña',
-                                style: TextStyle(
-                                    fontSize: 14, fontWeight: FontWeight.w500)),
-                          ),
-                        ),
-                        _divider(),
-                        SizedBox(height: height * .055),
-                        _createAccountLabel(),
-                      ],
-                    ),
+      key: _scaffoldKey,
+      body: Container(
+        height: height,
+        child: Stack(
+          children: <Widget>[
+            Positioned(
+              top: -MediaQuery.of(context).size.height * .15,
+              right: -MediaQuery.of(context).size.width * .4,
+              child: BezierWidget(),
+            ),
+            Form(
+              key: _formKey,
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      SizedBox(height: height * .2),
+                      _title(),
+                      SizedBox(
+                        height: 50,
+                      ),
+                      _formWidget(),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        "Enviaremos un enlace al email asociado a tú cuenta, para que puedas ingresar de nuevo",
+                        style: TextStyle(fontSize: 15, color: Colors.black),
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      _submitButton(),
+                      SizedBox(height: height * .14),
+                      _loginAccountLabel(),
+                    ],
                   ),
                 ),
               ),
-            ],
-          ),
-        ));
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
-  submitLogin() async {
+  submitForgotPasswordForm() async {
     if (_formKey.currentState.validate()) {
       _scaffoldKey.currentState
-          .showSnackBar(SnackBar(content: Text('Iniciando sesión')));
+          .showSnackBar(SnackBar(content: Text('Enviando datos')));
     }
-  }
-
-  goToForgotPassword() async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => ForgotPasswordWidget()));
   }
 }
