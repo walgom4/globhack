@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from mainapp.models import User, area, eps, gender, idType, healthRegister
+from mainapp.models import User, area, eps, gender, idType, healthRegister, transport
 
 # user serializer
 class UserSerializer(serializers.ModelSerializer):
@@ -50,6 +50,12 @@ class idTypeSerializer (serializers.ModelSerializer):
 class genderSerializer (serializers.ModelSerializer):
     class Meta:
         model = gender
+        fields = ('url', 'id',
+                  'name')
+
+class transportSerializer (serializers.ModelSerializer):
+    class Meta:
+        model = transport
         fields = ('url', 'id',
                   'name')
 
