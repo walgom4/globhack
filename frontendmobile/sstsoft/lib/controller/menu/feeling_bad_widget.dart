@@ -24,6 +24,14 @@ class _FeelingBadWidgetState extends State<FeelingBadWidget> {
         child: CachedNetworkImage(
           placeholder: (context, url) => CircularProgressIndicator(),
           imageUrl: 'https://picsum.photos/250?image=9',
+          imageBuilder: (context, imageProvider) => Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: imageProvider,
+                  fit: BoxFit.fitWidth,),
+            ),
+          ),
+          errorWidget: (context, url, error) => Icon(Icons.error),
         ),
       ),
     );

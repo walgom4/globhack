@@ -1,6 +1,7 @@
 import 'package:after_layout/after_layout.dart';
 // import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_youtube/flutter_youtube.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:sstsoft/controller/menu/arl_info_widget.dart';
 import 'package:sstsoft/controller/menu/end_journey_widget.dart';
@@ -30,6 +31,15 @@ class _PrincipalWidgetState extends State<PrincipalWidget>
 
   ///Login service reference
   LoginService loginService = LoginService();
+
+  void playYoutubeVideo() {
+    FlutterYoutube.playYoutubeVideoByUrl(
+        apiKey: "AIzaSyDCHLiZpHDutMsmY0E8r9HHBc-CNDJdg-I",
+        videoUrl: "https://www.youtube.com/watch?v=NMmAj1EKdVo",
+        autoPlay: true, //default falase
+        fullScreen: false, //default false
+        appBarColor: Colors.blue);
+  }
 
   @override
   void initState() {
@@ -101,10 +111,7 @@ class _PrincipalWidgetState extends State<PrincipalWidget>
                 color: Colors.white,
               ),
               color: Colors.blue,
-              onTap: () => Navigator.push(
-                context,
-                FadeRoute(page: WashHandsWidget()),
-              ),
+              onTap: () => playYoutubeVideo()
             ),
             makeDashboardItem(
               new Text("Me siento mal",

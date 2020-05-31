@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_youtube/flutter_youtube.dart';
 
 class WashHandsWidget extends StatefulWidget {
   @override
@@ -9,7 +9,8 @@ class WashHandsWidget extends StatefulWidget {
 class _WashHandsWidgetState extends State<WashHandsWidget> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return 
+    Scaffold(
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(
@@ -21,10 +22,13 @@ class _WashHandsWidgetState extends State<WashHandsWidget> {
         backgroundColor: Colors.blue,
       ),
       body: Center(
-        child: CachedNetworkImage(
-          placeholder: (context, url) => CircularProgressIndicator(),
-          imageUrl: 'https://picsum.photos/250?image=9',
-        ),
+          child: FlutterYoutube.playYoutubeVideoByUrl(
+          apiKey: "AIzaSyDCHLiZpHDutMsmY0E8r9HHBc-CNDJdg-I",
+          videoUrl: "https://www.youtube.com/watch?v=NMmAj1EKdVo",
+          autoPlay: true, //default falase
+          fullScreen: false, //default false
+          appBarColor: Colors.blue
+        )
       ),
     );
   }

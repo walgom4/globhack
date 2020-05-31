@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from mainapp.models import User, area, eps, gender, idType, healthRegister, transport, resources, entity, entityType, question
+from mainapp.models import User, area, eps, gender, idType, healthRegister, transport, resources, entity, entityType, question, answers, schedule
 
 # user serializer
 class UserSerializer(serializers.ModelSerializer):
@@ -57,6 +57,16 @@ class healthRegisterSerializer (serializers.ModelSerializer):
         'photo_temperature', 'photo_workspace', 'photo_selfie', 'observations',
         'health_condition', 'medical_file', 'ill', 'who_ill', 'date')
 
+class userHealthRegisterSerializer (serializers.ModelSerializer):
+    user_fk_health = UserSerializer(read_only=True)
+    class Meta:
+        model = healthRegister
+        fields = ('url', 'id', 'flu', 'fever', 'cough', 'sore_throat', 
+        'nasal_congestion', 'fatigue', 'difficult_breathe', 'muscle_pain', 
+        'diarrhea', 'threw_up', 'other', 'user_fk_health', 'temperature', 
+        'photo_temperature', 'photo_workspace', 'photo_selfie', 'observations',
+        'health_condition', 'medical_file', 'ill', 'who_ill', 'home', 'bad', 'date')
+
 class resourcesSerializer (serializers.ModelSerializer):
     class Meta:
         model = resources
@@ -76,3 +86,13 @@ class questionSerializer (serializers.ModelSerializer):
     class Meta:
         model = question
         fields = ('url', 'id','question', 'op1', 'op2', 'op3', 'answer')
+
+class answersSerializer (serializers.ModelSerializer):
+    class Meta:
+        model = answers
+        fields = ('url', 'id','answer_fk_user', 'answer_fk_question', 'user_answer', 'date')
+
+class scheduleSerializer (serializers.ModelSerializer):
+    class Meta:
+        model = schedule
+        fields = ('url', 'id','date_start', 'date_end', 'schedule_fk_healthRegister')

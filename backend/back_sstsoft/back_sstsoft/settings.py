@@ -81,12 +81,6 @@ WSGI_APPLICATION = 'back_sstsoft.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
 
 DATABASES = {
     'default': {
@@ -98,6 +92,17 @@ DATABASES = {
         'HOST':'localhost'
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'NAME': 'globhack_db',
+# 		'ENGINE': 'django.contrib.gis.db.backends.postgis',
+#         'USER': 'globhack_us',
+#         'PASSWORD': 'globhack_pass',
+#         'PORT':'5432',
+#         'HOST':'localhost'
+#     }
+# }
 
 
 # Password validation
@@ -147,11 +152,25 @@ STATICFILES_DIRS = (
     'C:/Users/walgom/Documents/elxampp/htdocs/globhack_static/media/resources',
 )
 
+# server conf
+# static files configuration server
+# STATIC_URL = 'http://api.oportunidadencasa.com/static/'
+# MEDIA_ROOT = '/home/walgom44/webapps/globhack_static/media/'
+# MEDIA_URL = '/static/media/'
+# STATIC_ROOT = '/home/walgom44/webapps/globhack_static'
+# STATICFILES_DIRS = (
+#     '/home/walgom44/webapps/globhack_static/media/',
+#     '/home/walgom44/webapps/globhack_static/media/users',
+#     '/home/walgom44/webapps/globhack_static/media/health_register',
+#     '/home/walgom44/webapps/globhack_static/media/resources',
+# )
+# end static files configuration server
+
 CORS_ORIGIN_ALLOW_ALL = True
 AUTH_USER_MODEL = 'mainapp.User'
 
 REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'COERCE_DECIMAL_TO_STRING': False,
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),
     'DEFAULT_AUTHENTICATION_CLASSES': (

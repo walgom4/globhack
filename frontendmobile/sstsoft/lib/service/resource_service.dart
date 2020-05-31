@@ -23,6 +23,62 @@ class RegisterService {
       throw ex;
     }
   }
+  
+  Future<Resources> findHandsVideo() async {
+    try {
+      dynamic response = await client.fetchGet(
+          ServiceCons.FIND_WASH_HAND_VIDEO, Map<String, dynamic>());
+      Resources resource = Resources.fromJson(response);
+      return resource;
+    } catch (ex, stacktrace) {
+      print(stacktrace);
+      throw ex;
+    }
+  }
+  Future<Resources> findCleaningArea() async {
+    try {
+      dynamic response = await client.fetchGet(
+          ServiceCons.FIND_CLEANING_AREA, Map<String, dynamic>());
+      Resources resource = Resources.fromJson(response);
+      return resource;
+    } catch (ex, stacktrace) {
+      print(stacktrace);
+      throw ex;
+    }
+  }
+  Future<Resources> findClothes() async {
+    try {
+      dynamic response = await client.fetchGet(
+          ServiceCons.FIND_CLOTHES, Map<String, dynamic>());
+      Resources resource = Resources.fromJson(response);
+      return resource;
+    } catch (ex, stacktrace) {
+      print(stacktrace);
+      throw ex;
+    }
+  }
+  Future<Resources> findShoes() async {
+    try {
+      dynamic response = await client.fetchGet(
+          ServiceCons.FIND_SHOES, Map<String, dynamic>());
+      Resources resource = Resources.fromJson(response);
+      return resource;
+    } catch (ex, stacktrace) {
+      print(stacktrace);
+      throw ex;
+    }
+  }
+  Future<Resources> findGlasses() async {
+    try {
+      dynamic response = await client.fetchGet(
+          ServiceCons.FIND_GLASSES, Map<String, dynamic>());
+      Resources resource = Resources.fromJson(response);
+      return resource;
+    } catch (ex, stacktrace) {
+      print(stacktrace);
+      throw ex;
+    }
+  }
 
   
 }

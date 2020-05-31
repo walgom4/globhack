@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from mainapp.serializers import UserSerializer, areaSerializer, epsSerializer, genderSerializer, idTypeSerializer, healthRegisterSerializer, transportSerializer, resourcesSerializer, entitySerializer, entityTypeSerializer, questionSerializer
-from mainapp.models import User, area, eps, gender, idType, healthRegister, transport, resources, entity, entityType, question
+from mainapp.serializers import UserSerializer, areaSerializer, epsSerializer, genderSerializer, idTypeSerializer, healthRegisterSerializer, userHealthRegisterSerializer, transportSerializer, resourcesSerializer, entitySerializer, entityTypeSerializer, questionSerializer, answersSerializer, scheduleSerializer
+from mainapp.models import User, area, eps, gender, idType, healthRegister, transport, resources, entity, entityType, question, answers, schedule
 
 # start restframework
 from rest_framework import viewsets, generics
@@ -141,14 +141,36 @@ class healthRegisterViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend, OrderingFilter]
     filterset_fields = [ 'id', 'flu', 'fever', 'cough', 'sore_throat', 
         'nasal_congestion', 'fatigue', 'difficult_breathe', 'muscle_pain', 
-        'diarrhea', 'threw_up', 'other', 'user_fk_health', 'temperature', 
-        'photo_temperature', 'photo_workspace', 'photo_selfie', 'observations',
-        'health_condition', 'medical_file', 'ill', 'who_ill', 'date']
+        'diarrhea', 'threw_up', 'other', 'user_fk_health', 'temperature', 'observations',
+        'health_condition', 'ill', 'who_ill', 'date']
     ordering_fields = [ 'id', 'flu', 'fever', 'cough', 'sore_throat', 
         'nasal_congestion', 'fatigue', 'difficult_breathe', 'muscle_pain', 
-        'diarrhea', 'threw_up', 'other', 'user_fk_health', 'temperature', 
-        'photo_temperature', 'photo_workspace', 'photo_selfie', 'observations',
-        'health_condition', 'medical_file', 'ill', 'who_ill', 'date']
+        'diarrhea', 'threw_up', 'other', 'user_fk_health', 'temperature', 'observations',
+        'health_condition', 'ill', 'who_ill', 'date']
+
+    # permisos
+    def get_permissions(self):
+        permission_classes = []
+        if self.action == 'create':
+            permission_classes = [AllowAny]
+        elif self.action == 'retrieve' or self.action == 'update' or self.action == 'partial_update':
+            permission_classes = [AllowAny]
+        elif self.action == 'list' or self.action == 'destroy':
+            permission_classes = [AllowAny]
+        return [permission() for permission in permission_classes]
+
+class userHealthRegisterViewSet(viewsets.ModelViewSet):
+    queryset = healthRegister.objects.all()
+    serializer_class = userHealthRegisterSerializer
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
+    filterset_fields = [ 'id', 'flu', 'fever', 'cough', 'sore_throat', 
+        'nasal_congestion', 'fatigue', 'difficult_breathe', 'muscle_pain', 
+        'diarrhea', 'threw_up', 'other', 'user_fk_health', 'temperature', 'observations',
+        'health_condition', 'ill', 'who_ill', 'date']
+    ordering_fields = [ 'id', 'flu', 'fever', 'cough', 'sore_throat', 
+        'nasal_congestion', 'fatigue', 'difficult_breathe', 'muscle_pain', 
+        'diarrhea', 'threw_up', 'other', 'user_fk_health', 'temperature', 'observations',
+        'health_condition', 'ill', 'who_ill', 'date']
 
     # permisos
     def get_permissions(self):
@@ -165,6 +187,7 @@ class resourcesViewSet(viewsets.ModelViewSet):
     queryset = resources.objects.all()
     serializer_class = resourcesSerializer
     filter_backends = [DjangoFilterBackend, OrderingFilter]
+    filterset_fields = ['id', 'code']
 
     # permisos
     def get_permissions(self):
@@ -215,6 +238,40 @@ class questionViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend, OrderingFilter]
     ordering_fields = [ 'id']
     
+    # permisos
+    def get_permissions(self):
+        permission_classes = []
+        if self.action == 'create':
+            permission_classes = [AllowAny]
+        elif self.action == 'retrieve' or self.action == 'update' or self.action == 'partial_update':
+            permission_classes = [AllowAny]
+        elif self.action == 'list' or self.action == 'destroy':
+            permission_classes = [AllowAny]
+        return [permission() for permission in permission_classes]
+
+class answersViewSet(viewsets.ModelViewSet):
+    queryset = answers.objects.all()
+    serializer_class = answersSerializer
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
+    ordering_fields = [ 'id']
+
+    # permisos
+    def get_permissions(self):
+        permission_classes = []
+        if self.action == 'create':
+            permission_classes = [AllowAny]
+        elif self.action == 'retrieve' or self.action == 'update' or self.action == 'partial_update':
+            permission_classes = [AllowAny]
+        elif self.action == 'list' or self.action == 'destroy':
+            permission_classes = [AllowAny]
+        return [permission() for permission in permission_classes]
+
+class scheduleViewSet(viewsets.ModelViewSet):
+    queryset = schedule.objects.all()
+    serializer_class = scheduleSerializer
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
+    ordering_fields = [ 'id']
+
     # permisos
     def get_permissions(self):
         permission_classes = []
