@@ -42,8 +42,12 @@ enum yesNo { yes, no }
 convertYesNoToValue(yesNo result) {
   switch (result) {
     case yesNo.yes:
-      return "Sí";
+      return true;
     case yesNo.no:
-      return "No";
+      return false;
   }
+}
+
+convertValueToYesNo(bool result) {
+  return result == null ? yesNo.no : result ? yesNo.yes : yesNo.no;
 }
