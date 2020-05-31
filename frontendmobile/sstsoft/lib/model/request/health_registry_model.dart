@@ -14,43 +14,54 @@ class HealthRegistryModel {
   bool diarrhea;
   bool threwUp;
   String other;
-  int userFkHealth;
-  int temperature;
+  String userFkHealth;
+  double temperature;
   MultipartFile photoTemperature;
+  String photoTemperatureUrl;
   MultipartFile photoWorkspace;
+  String photoWorkspaceUrl;
   MultipartFile photoSelfie;
+  String photoSelfieUrl;
   String observations;
   bool healthCondition;
   MultipartFile medicalFile;
   bool ill;
   String whoIll;
   String date;
+  bool home;
+  bool bad;
 
-  HealthRegistryModel(
-      {this.url,
-      this.id,
-      this.flu = false,
-      this.fever = false,
-      this.cough = false,
-      this.soreThroat = false,
-      this.nasalCongestion = false,
-      this.fatigue = false,
-      this.difficultBreathe = false,
-      this.musclePain = false,
-      this.diarrhea = false,
-      this.threwUp = false,
-      this.other,
-      this.userFkHealth,
-      this.temperature,
-      this.photoTemperature,
-      this.photoWorkspace,
-      this.photoSelfie,
-      this.observations,
-      this.healthCondition = false,
-      this.medicalFile,
-      this.ill = false,
-      this.whoIll,
-      this.date});
+  HealthRegistryModel({
+    this.url,
+    this.id,
+    this.flu = false,
+    this.fever = false,
+    this.cough = false,
+    this.soreThroat = false,
+    this.nasalCongestion = false,
+    this.fatigue = false,
+    this.difficultBreathe = false,
+    this.musclePain = false,
+    this.diarrhea = false,
+    this.threwUp = false,
+    this.other,
+    this.userFkHealth,
+    this.temperature,
+    this.photoTemperature,
+    this.photoTemperatureUrl,
+    this.photoWorkspace,
+    this.photoWorkspaceUrl,
+    this.photoSelfie,
+    this.photoSelfieUrl,
+    this.observations,
+    this.healthCondition = false,
+    this.medicalFile,
+    this.ill = false,
+    this.whoIll,
+    this.date,
+    this.home = false,
+    this.bad = false,
+  });
 
   HealthRegistryModel.fromJson(Map<String, dynamic> json) {
     url = json['url'];
@@ -68,15 +79,17 @@ class HealthRegistryModel {
     other = json['other'];
     userFkHealth = json['user_fk_health'];
     temperature = json['temperature'];
-    photoTemperature = json['photo_temperature'];
-    photoWorkspace = json['photo_workspace'];
-    photoSelfie = json['photo_selfie'];
+    photoTemperatureUrl = json['photo_temperature'];
+    photoWorkspaceUrl = json['photo_workspace'];
+    photoSelfieUrl = json['photo_selfie'];
     observations = json['observations'];
     healthCondition = json['health_condition'];
     medicalFile = json['medical_file'];
     ill = json['ill'];
     whoIll = json['who_ill'];
     date = json['date'];
+    home = json['home'];
+    bad = json['bad'];
   }
 
   Map<String, dynamic> toJson() {
@@ -105,6 +118,8 @@ class HealthRegistryModel {
     data['ill'] = this.ill;
     data['who_ill'] = this.whoIll;
     data['date'] = this.date;
+    data['home'] = this.home;
+    data['bad'] = this.bad;
     return data;
   }
 }

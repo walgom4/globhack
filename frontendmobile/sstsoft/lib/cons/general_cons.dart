@@ -24,4 +24,7 @@ class GeneralCons {
 
   ///General date format
   static final DateFormat generalDateFormat = DateFormat('yyyy-MM-dd');
+
+  ///General datetime format
+  static final DateFormat generalDateTimeFormat = DateFormat("yyyy-MM-dd HH:mm");
 }

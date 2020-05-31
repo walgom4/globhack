@@ -8,8 +8,7 @@ class WashHandsWidget extends StatefulWidget {
 class _WashHandsWidgetState extends State<WashHandsWidget> {
   @override
   Widget build(BuildContext context) {
-    return 
-    Scaffold(
+    return Scaffold(
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(
