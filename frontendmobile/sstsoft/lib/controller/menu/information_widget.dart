@@ -9,7 +9,8 @@ class InformationWidget extends StatefulWidget {
   _InformationWidgetState createState() => _InformationWidgetState();
 }
 
-class _InformationWidgetState extends State<InformationWidget> with AfterLayoutMixin<InformationWidget>  {
+class _InformationWidgetState extends State<InformationWidget>
+    with AfterLayoutMixin<InformationWidget> {
   ///Current step index
   int currentStep = 0;
 
@@ -31,104 +32,137 @@ class _InformationWidgetState extends State<InformationWidget> with AfterLayoutM
   buildStepList() {
     this.stepList = [
       Step(
-        title: Text(resources2.code??""),
+        title: Text(
+          resources2.code ?? "",
+          overflow: TextOverflow.ellipsis,
+        ),
         isActive: true,
         state: StepState.complete,
         content: Column(
           children: <Widget>[
-            resources2.image!=null? CachedNetworkImage(
-              imageUrl: resources2.image,
-              placeholder: (context, url) => CircularProgressIndicator(),
-              errorWidget: (context, url, error) => Icon(Icons.error),
-            ): Text("cargando..."),
+            resources2.image != null
+                ? CachedNetworkImage(
+                    imageUrl: resources2.image,
+                    placeholder: (context, url) => CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  )
+                : Text("cargando..."),
           ],
         ),
       ),
       Step(
-        title: Text(resources3.code??""),
+        title: Text(
+          resources3.code ?? "",
+          overflow: TextOverflow.ellipsis,
+        ),
         isActive: true,
         state: StepState.complete,
         content: Column(
           children: <Widget>[
-            resources3.image!=null? CachedNetworkImage(
-              imageUrl: resources3.image,
-              placeholder: (context, url) => CircularProgressIndicator(),
-              errorWidget: (context, url, error) => Icon(Icons.error),
-            ): Text("cargando..."),
+            resources3.image != null
+                ? CachedNetworkImage(
+                    imageUrl: resources3.image,
+                    placeholder: (context, url) => CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  )
+                : Text("cargando..."),
           ],
         ),
       ),
       Step(
-        title: Text(resources4.code??""),
+        title: Text(
+          "Desinfección suela de los zapatos",
+        ),
         isActive: true,
         state: StepState.complete,
         content: Column(
           children: <Widget>[
-            resources4.image!=null? CachedNetworkImage(
-              imageUrl: resources4.image,
-              placeholder: (context, url) => CircularProgressIndicator(),
-              errorWidget: (context, url, error) => Icon(Icons.error),
-            ): Text("cargando..."),
+            resources4.image != null
+                ? CachedNetworkImage(
+                    imageUrl: resources4.image,
+                    placeholder: (context, url) => CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  )
+                : Text("cargando..."),
           ],
         ),
       ),
       Step(
-        title: Text(resources5.code??""),
+        title: Text(
+          resources5.code ?? "",
+          overflow: TextOverflow.ellipsis,
+        ),
         isActive: true,
         state: StepState.complete,
         content: Column(
           children: <Widget>[
-            resources5.image!=null? CachedNetworkImage(
-              imageUrl: resources5.image,
-              placeholder: (context, url) => CircularProgressIndicator(),
-              errorWidget: (context, url, error) => Icon(Icons.error),
-            ): Text("cargando..."),
+            resources5.image != null
+                ? CachedNetworkImage(
+                    imageUrl: resources5.image,
+                    placeholder: (context, url) => CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  )
+                : Text("cargando..."),
           ],
         ),
       ),
       Step(
-        title: Text(resources6.code??""),
+        title: Text(
+          resources6.code ?? "",
+          overflow: TextOverflow.ellipsis,
+        ),
         isActive: true,
         state: StepState.complete,
         content: Column(
           children: <Widget>[
-            resources6.image!=null? CachedNetworkImage(
-              imageUrl: resources6.image,
-              placeholder: (context, url) => CircularProgressIndicator(),
-              errorWidget: (context, url, error) => Icon(Icons.error),
-            ): Text("cargando..."),
+            resources6.image != null
+                ? CachedNetworkImage(
+                    imageUrl: resources6.image,
+                    placeholder: (context, url) => CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  )
+                : Text("cargando..."),
           ],
         ),
       ),
       Step(
-        title: Text(resources7.code??""),
+        title: Text(
+          resources7.code ?? "",
+          overflow: TextOverflow.ellipsis,
+        ),
         isActive: true,
         state: StepState.complete,
         content: Column(
           children: <Widget>[
-            resources7.image!=null? CachedNetworkImage(
-              imageUrl: resources7.image,
-              placeholder: (context, url) => CircularProgressIndicator(),
-              errorWidget: (context, url, error) => Icon(Icons.error),
-            ): Text("cargando..."),
+            resources7.image != null
+                ? CachedNetworkImage(
+                    imageUrl: resources7.image,
+                    placeholder: (context, url) => CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  )
+                : Text("cargando..."),
           ],
         ),
       ),
       Step(
-        title: Text(resources8.code??""),
+        title: Text(
+          resources8.code ?? "",
+          overflow: TextOverflow.ellipsis,
+        ),
         isActive: true,
         state: StepState.complete,
         content: Column(
           children: <Widget>[
-            resources8.image!=null? CachedNetworkImage(
-              imageUrl: resources8.image,
-              placeholder: (context, url) => CircularProgressIndicator(),
-              errorWidget: (context, url, error) => Icon(Icons.error),
-            ): Text("cargando..."),
+            resources8.image != null
+                ? CachedNetworkImage(
+                    imageUrl: resources8.image,
+                    placeholder: (context, url) => CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  )
+                : Text("cargando..."),
           ],
         ),
       ),
-      
     ];
   }
 
@@ -150,13 +184,13 @@ class _InformationWidgetState extends State<InformationWidget> with AfterLayoutM
 
   @override
   void afterFirstLayout(BuildContext context) async {
-    resources2=await resourceService.findCleaningArea();
-    resources3=await resourceService.findClothes();
-    resources4=await resourceService.findShoes();
-    resources5=await resourceService.findGlasses();
-    resources6=await resourceService.findMask();
-    resources7=await resourceService.findGloves();
-    resources8=await resourceService.findSymptoms();
+    resources2 = await resourceService.findCleaningArea();
+    resources3 = await resourceService.findClothes();
+    resources4 = await resourceService.findShoes();
+    resources5 = await resourceService.findGlasses();
+    resources6 = await resourceService.findMask();
+    resources7 = await resourceService.findGloves();
+    resources8 = await resourceService.findSymptoms();
     setState(() {});
   }
 
@@ -178,12 +212,32 @@ class _InformationWidgetState extends State<InformationWidget> with AfterLayoutM
         Expanded(
           child: Stepper(
             currentStep: this.currentStep,
-            onStepContinue: next(),
+            onStepContinue: next,
             onStepTapped: (value) {
               goTo(value);
             },
             onStepCancel: cancel,
             steps: stepList,
+            controlsBuilder: (context, {onStepCancel, onStepContinue}) {
+              return Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  RaisedButton(
+                    onPressed: onStepCancel,
+                    child: const Text('Volver'),
+                  ),
+                  RaisedButton(
+                    onPressed: onStepContinue,
+                    child: const Text(
+                      'Siguiente',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    color: Colors.purple,
+                  ),
+                ],
+              );
+            },
           ),
         ),
       ]),
