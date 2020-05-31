@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'mainapp',
     'django.contrib.postgres',
     'fcm_django',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -137,7 +138,7 @@ USE_TZ = True
 
 STATIC_URL = '/globhack_static/'
 MEDIA_ROOT = 'C:/Users/walgom/Documents/elxampp/htdocs/globhack_static/media'
-MEDIA_URL = 'http://6484a8d562ee.ngrok.io/globhack_static/media/'
+MEDIA_URL = 'http://198758ce7e72.ngrok.io/globhack_static/media/'
 STATIC_ROOT = 'C:/Users/walgom/Documents/elxampp/htdocs/globhack_static'
 STATICFILES_DIRS = (
     'C:/Users/walgom/Documents/elxampp/htdocs/globhack_static/media/',

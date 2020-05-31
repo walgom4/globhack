@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from mainapp.models import User, area, eps, gender, idType, healthRegister, transport, resources, entity, entityType
+from mainapp.models import User, area, eps, gender, idType, healthRegister, transport, resources, entity, entityType, question
 
 # user serializer
 class UserSerializer(serializers.ModelSerializer):
@@ -26,32 +26,27 @@ class UserSerializer(serializers.ModelSerializer):
 class areaSerializer (serializers.ModelSerializer):
     class Meta:
         model = area
-        fields = ('url', 'id',
-                  'name')
+        fields = ('url', 'id','name')
 
 class epsSerializer (serializers.ModelSerializer):
     class Meta:
         model = eps
-        fields = ('url', 'id',
-                  'name')
+        fields = ('url', 'id','name')
 
 class idTypeSerializer (serializers.ModelSerializer):
     class Meta:
         model = idType
-        fields = ('url', 'id',
-                  'name')
+        fields = ('url', 'id','name')
 
 class genderSerializer (serializers.ModelSerializer):
     class Meta:
         model = gender
-        fields = ('url', 'id',
-                  'name')
+        fields = ('url', 'id','name')
 
 class transportSerializer (serializers.ModelSerializer):
     class Meta:
         model = transport
-        fields = ('url', 'id',
-                  'name')
+        fields = ('url', 'id','name')
 
 class healthRegisterSerializer (serializers.ModelSerializer):
     class Meta:
@@ -76,3 +71,8 @@ class entityTypeSerializer (serializers.ModelSerializer):
     class Meta:
         model = entityType
         fields = ('url', 'id','name')
+
+class questionSerializer (serializers.ModelSerializer):
+    class Meta:
+        model = question
+        fields = ('url', 'id','question', 'op1', 'op2', 'op3', 'answer')

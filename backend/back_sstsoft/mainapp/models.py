@@ -140,3 +140,14 @@ class entity(models.Model):
 
     def __str__(self):
         return "{}".format(self.id)
+
+class question(models.Model):
+    id = models.AutoField(primary_key=True)
+    question = models.CharField(max_length=1000)
+    op1 = models.CharField(max_length=1000)
+    op2 = models.CharField(max_length=1000)
+    op3 = models.CharField(max_length=1000)
+    answer = models.CharField(max_length=5)
+
+    def __str__(self):
+        return "{}".format(self.id)

@@ -47,12 +47,12 @@
 					"basic": [
 						{
 							"key": "password",
-							"value": "12345678",
+							"value": "1016031266",
 							"type": "string"
 						},
 						{
 							"key": "username",
-							"value": "12345678",
+							"value": "1016031266",
 							"type": "string"
 						}
 					]
@@ -761,6 +761,54 @@
 					"path": [
 						"api",
 						"healthRegister",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get questions",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "12345678",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{server_url}}/api/question/",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"api",
+						"question",
 						""
 					]
 				}
