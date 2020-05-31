@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class GeneralCons {
   ///General color for UX
@@ -20,4 +21,7 @@ class GeneralCons {
 
   ///Title text style
   static final TextStyle titleTextStyle = TextStyle(fontSize: 18, fontWeight: FontWeight.bold);
+
+  ///General date format
+  static final DateFormat generalDateFormat = DateFormat('yyyy-MM-dd');
 }

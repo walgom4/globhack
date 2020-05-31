@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sstsoft/cons/general_cons.dart';
+import 'package:sstsoft/controller/login_widget.dart';
+import 'package:sstsoft/model/request/recovery_password_model.dart';
+import 'package:sstsoft/model/ws_exception.dart';
+import 'package:sstsoft/service/login_service.dart';
 import 'package:sstsoft/util/bezierwidget.dart';
 
 class ForgotPasswordWidget extends StatefulWidget {
@@ -17,9 +21,17 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
   ///Retain scaffold context to view messages
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
+  ///Recovery password model
+  RecoveryPasswordModel recoveryPasswordModel = RecoveryPasswordModel();
+
+  ///Login service reference
+  LoginService service = LoginService();
+
   Widget _entryField(String title,
       {bool isPassword = false,
-      String validatorMessage = "Por favor ingresa el campo."}) {
+      String validatorMessage = "Por favor ingresa el campo.",
+      String value,
+      void Function(String) onSaved}) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       child: Column(
@@ -33,17 +45,20 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
             height: 10,
           ),
           TextFormField(
-              validator: (value) {
-                if (value.isEmpty) {
-                  return validatorMessage;
-                }
-                return null;
-              },
-              obscureText: isPassword,
-              decoration: InputDecoration(
-                  border: InputBorder.none,
-                  fillColor: Color(0xfff3f3f4),
-                  filled: true))
+            validator: (value) {
+              if (value.isEmpty) {
+                return validatorMessage;
+              }
+              return null;
+            },
+            onSaved: onSaved,
+            initialValue: value,
+            obscureText: isPassword,
+            decoration: InputDecoration(
+                border: InputBorder.none,
+                fillColor: Color(0xfff3f3f4),
+                filled: true),
+          ),
         ],
       ),
     );
@@ -134,7 +149,14 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
   Widget _formWidget() {
     return Column(
       children: <Widget>[
-        _entryField("Cédula", validatorMessage: "Por favor ingresa la cédula"),
+        _entryField(
+          "Cédula",
+          validatorMessage: "Por favor ingresa la cédula",
+          value: this.recoveryPasswordModel.email,
+          onSaved: (value) {
+            recoveryPasswordModel.email = value;
+          },
+        ),
       ],
     );
   }
@@ -193,9 +215,57 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
   }
 
   submitForgotPasswordForm() async {
-    if (_formKey.currentState.validate()) {
-      _scaffoldKey.currentState
-          .showSnackBar(SnackBar(content: Text('Enviando datos')));
+    try {
+      if (_formKey.currentState.validate()) {
+        _formKey.currentState.save();
+        await service.recoveryUserPassword(recoveryPasswordModel);
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            content: Text("Se ha reestablecido la contraseña correctamente."),
+            actions: <Widget>[
+              FlatButton(
+                child: Text('Ok'),
+                onPressed: () {
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                      LoginWidget.name, (Route<dynamic> route) => false);
+                },
+              ),
+            ],
+          ),
+        );
+      }
+    } on WsException catch (ex) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          content: Text(
+              "Registro incorrecto. compruebe los campos del formulario: ${ex.cause}"),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Ok'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        ),
+      );
+    } catch (ex) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          content: Text("Registro incorrecto."),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Ok'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        ),
+      );
     }
   }
 }

@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 class UserRequestModel {
-  String identification;
+  String id;
   String username;
   int idTypeFkUser;
   String email;
@@ -11,13 +11,13 @@ class UserRequestModel {
   String phone;
   String address;
   String birthday;
-  String genderFkUser;
-  String epsFkUser;
+  int genderFkUser;
+  int epsFkUser;
   String job;
   String boss;
-  String areaFkUser;
+  int areaFkUser;
   MultipartFile photo;
-  String transportFkUser;
+  int transportFkUser;
   bool risk;
   String whoRisk;
   bool healthSystem;
@@ -25,35 +25,40 @@ class UserRequestModel {
   String emergencyContactName;
   String emergencyContactRelationship;
   String emergencyContactPhone;
+  bool acceptTerms;
+  bool isSst;
 
-  UserRequestModel(
-      {this.identification,
-      this.username,
-      this.idTypeFkUser,
-      this.email,
-      this.password,
-      this.name,
-      this.lastName,
-      this.phone,
-      this.address,
-      this.birthday,
-      this.genderFkUser,
-      this.epsFkUser,
-      this.job,
-      this.boss,
-      this.areaFkUser,
-      this.photo,
-      this.transportFkUser,
-      this.risk,
-      this.whoRisk,
-      this.healthSystem,
-      this.whoHealth,
-      this.emergencyContactName,
-      this.emergencyContactRelationship,
-      this.emergencyContactPhone});
+  UserRequestModel({
+    this.id,
+    this.username,
+    this.idTypeFkUser,
+    this.email,
+    this.password,
+    this.name,
+    this.lastName,
+    this.phone,
+    this.address,
+    this.birthday,
+    this.genderFkUser,
+    this.epsFkUser,
+    this.job,
+    this.boss,
+    this.areaFkUser,
+    this.photo,
+    this.transportFkUser,
+    this.risk = false,
+    this.whoRisk,
+    this.healthSystem = false,
+    this.whoHealth,
+    this.emergencyContactName,
+    this.emergencyContactRelationship,
+    this.emergencyContactPhone,
+    this.acceptTerms = false,
+    this.isSst = false,
+  });
 
   UserRequestModel.fromJson(Map<String, dynamic> json) {
-    identification = json['identification'];
+    id = json['id'];
     username = json['username'];
     idTypeFkUser = json['idType_fk_user'];
     email = json['email'];
@@ -77,11 +82,13 @@ class UserRequestModel {
     emergencyContactName = json['emergency_contact_name'];
     emergencyContactRelationship = json['emergency_contact_relationship'];
     emergencyContactPhone = json['emergency_contact_phone'];
+    acceptTerms = json['accept_terms'];
+    isSst = json['is_sst'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['identification'] = this.identification;
+    data['id'] = this.id;
     data['username'] = this.username;
     data['idType_fk_user'] = this.idTypeFkUser;
     data['email'] = this.email;
@@ -105,6 +112,8 @@ class UserRequestModel {
     data['emergency_contact_name'] = this.emergencyContactName;
     data['emergency_contact_relationship'] = this.emergencyContactRelationship;
     data['emergency_contact_phone'] = this.emergencyContactPhone;
+    data['accept_terms'] = this.acceptTerms;
+    data['is_sst'] = this.isSst;
     return data;
   }
 }

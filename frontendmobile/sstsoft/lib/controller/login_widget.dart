@@ -46,19 +46,20 @@ class _LoginWidgetState extends State<LoginWidget> {
             height: 10,
           ),
           TextFormField(
-              validator: (value) {
-                if (value.isEmpty) {
-                  return validatorMessage;
-                }
-                return null;
-              },
-              onSaved: onSaved,
-              initialValue: value,
-              obscureText: isPassword,
-              decoration: InputDecoration(
-                  border: InputBorder.none,
-                  fillColor: Color(0xfff3f3f4),
-                  filled: true))
+            validator: (value) {
+              if (value.isEmpty) {
+                return validatorMessage;
+              }
+              return null;
+            },
+            onSaved: onSaved,
+            initialValue: value,
+            obscureText: isPassword,
+            decoration: InputDecoration(
+                border: InputBorder.none,
+                fillColor: Color(0xfff3f3f4),
+                filled: true),
+          ),
         ],
       ),
     );
