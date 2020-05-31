@@ -37,7 +37,7 @@
             <!-- dropdown menu -->
             <v-menu offset-y>
                 <template v-slot:activator="{ on }">
-                  <v-btn text v-on="on" color="black">
+                  <v-btn text v-on="on" color="white">
                     <v-icon left>mdi-chevron-down</v-icon>
                     <span>Configuración</span>
                   </v-btn>
@@ -66,7 +66,7 @@ import router from "@/router/index";
 export default {
     data() {
       return {
-        srcImage: require(`@/assets/sstlogo.png`),
+        srcImage: require(`@/assets/LogoBlanco.png`),
         clipped: false,
         items: [
           {

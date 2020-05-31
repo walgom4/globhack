@@ -7,10 +7,10 @@
   
         <v-card>
           <v-card-title
-            class="headline accent"
+            class="headline accent white--text"
             primary-title
           >
-            <span style="margin:auto; display:table;"> <strong > Login </strong> </span> 
+            <span style="margin:auto; display:table;"> <strong> Login </strong> </span> 
           </v-card-title>
   
           <v-card-text>
@@ -19,7 +19,7 @@
                             <v-card class="elevation-1 pa-3">
                             <v-card-text>
                                 <div class="layout column align-center">
-                                    <img src="@/assets/sstlogo.png" alt="Satlock WEB" width="200" height="120">
+                                    <img src="@/assets/logo login web.png" alt="Satlock WEB" width="200" height="120">
                                 </div>
                                 <v-form 
                                 ref="form"

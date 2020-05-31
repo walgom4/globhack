@@ -7,7 +7,7 @@
   
         <v-card>
           <v-card-title
-            class="headline accent"
+            class="headline accent white--text"
             primary-title
           >
             <span style="margin:auto; display:table;"> <strong > Añadir Seguimiento - {{userIdLocal}}</strong> </span> 
@@ -90,7 +90,7 @@
 </template>
 
 <script>
-//import { AdminService } from "@/services/admin.service";
+import { AdminService } from "@/services/admin.service";
 export default {
     name: 'AdminTracingModal',
     data() {
@@ -129,8 +129,7 @@ export default {
                 this.model.id = this.userIdLocal
                 this.model.area_fk_user = this.area_fk_user_local
 
-                //const recursos = await AdminService.editRegistersUnique(this.model);
-                console.log(this.model)
+                await AdminService.editRegistersUnique(this.model);
             }
         },
     },

@@ -18,7 +18,7 @@
                     <v-parallax :src="linkImgs.baner" height="600">
                         <v-layout column align-center justify-center class="black--text">
                             <h1 class="black--text mb-2 display-1 text-xs-center" style="font-weight: 900; text-shadow: 3px 2px #ffffff">!Cuidémonos Juntos!</h1>
-                            <div class="black--text subheading mb-3 text-xs-center" style="text-shadow: 2px 2px #ffffff">En estos momentos de dificultad debemos estar más unidos que nunca. No dejaremos que la distancia sea un impedimento para cuidarnos. Es tú momento para aportar tu granito de arena y así lograr que todos podamos volver a trabajar de manera segura. </div>
+                            <div class="black--text subheading mb-3 text-xs-center" style="font-size: 140%; text-shadow: 2px 2px #ffffff">En estos momentos de dificultad debemos estar más unidos que nunca. No dejaremos que la distancia sea un impedimento para cuidarnos. Es tú momento para aportar tu granito de arena y así lograr que todos podamos volver a trabajar de manera segura. </div>
                             <v-btn class="accent lighten-2 mt-5" dark large @click="$vuetify.goTo('#whatis')">
                             Conocer Más...
                             </v-btn>
@@ -29,7 +29,7 @@
                 <!-- Parallax 1 Que es y que nos motiva-->
                 <section id="whatis">
 
-                    <v-parallax :src="linkImgs.parallax1" height="380">
+                    <v-parallax :src="linkImgs.parallax1" height="300">
                         <v-layout
                         column
                         wrap
@@ -41,26 +41,20 @@
                                     <v-layout row wrap align-center>
                                     <v-flex xs12 md6>
                                         <v-card class="elevation-0 transparent">
-                                            <v-card-text class="text-xs-center">
-                                            <v-icon x-large class="white--text text--lighten-2">mdi-comment-account</v-icon>
-                                            </v-card-text>
                                             <v-card-title primary-title class="layout justify-center">
                                                 <div class="headline text-xs-center white--text">¿Qué es?</div>
                                             </v-card-title>
-                                            <v-card-text class="white--text">
+                                            <v-card-text class="white--text" style="font-size: 140%;">
                                                 Sabemos que entender protocolos no es tan sencillo, por ello hemos diseñado esta herramienta para ayudarte de manera fácil y gráfica a conocer cómo realizar acciones de cuidado para ti y tu comunidad en tu ambiente laboral y con ello, colaborar a la mitigación de la propagación del COVID-19.
                                             </v-card-text>
                                         </v-card>
                                     </v-flex>
                                     <v-flex xs12 md6>
                                     <v-card class="elevation-0 transparent">
-                                        <v-card-text class="text-xs-center">
-                                            <v-icon x-large class="white--text text--lighten-2">mdi-lightbulb</v-icon>
-                                        </v-card-text>
                                         <v-card-title primary-title class="layout justify-center">
                                             <div class="headline white--text">¿Qué nos motiva?</div>
                                         </v-card-title>
-                                        <v-card-text class="white--text">
+                                        <v-card-text class="white--text " style="font-size: 140%;">
                                             Las personas y su bienestar, sabemos que entre todos podemos enfrentar esta pandemia y salir adelante. Somos conscientes de lo importante que es para todos regresar a trabajar, por ello, queremos brindar herramientas para que lo hagan de manera segura y sin exponerse o a sus seres queridos. Confiamos en que tú también nos ayudarás en este objetivo.
                                         </v-card-text>
                                     </v-card>
@@ -94,7 +88,7 @@
                                         </div>
                                     </v-card-text>
                                     <v-card-title primary-title class="layout justify-center">
-                                        <div class="headline text-xs-center">Ingresa tus datos y los de tu empresa para crear tu usuario.</div>
+                                        <div class="headline text-xs-center">Ingresa tus datos <br/> y los de tu empresa para crear tu usuario.</div>
                                     </v-card-title>
                                 </v-card>
                             </v-flex>
@@ -130,7 +124,7 @@
                                         </div>
                                     </v-card-text>
                                     <v-card-title primary-title class="layout justify-center">
-                                        <div class="headline text-xs-center">Visualiza la información de contacto de tu ARL e informa si te sientes mal.</div>
+                                        <div class="headline text-xs-center">Visualiza la información de tu ARL e informa si te sientes mal.</div>
                                     </v-card-title>
                                 </v-card>
                             </v-flex>
@@ -149,7 +143,7 @@
 
                 <!-- Parallax 3 seccion de beneficios -->
                 <section>
-                    <v-parallax :src="linkImgs.parallax2" height="380">
+                    <v-parallax :src="linkImgs.parallax2" height="300">
                         <v-layout
                         column
                         wrap
@@ -161,13 +155,10 @@
                                 <v-layout row wrap align-center>
                                     <v-flex xs12 md4>
                                         <v-card class="elevation-0 transparent">
-                                            <v-card-text class="text-xs-center">
-                                                <v-icon x-large class="white--text text--lighten-2">mdi-factory</v-icon>
-                                            </v-card-text>
                                             <v-card-title primary-title class="layout justify-center">
                                                 <div class="headline text-xs-center white--text">Beneficios Empresa</div>
                                             </v-card-title>
-                                            <v-card-text class="white--text">
+                                            <v-card-text class="white--text" style="font-size: 140%;">
                                                 •    Capacitación a tus empleados <br />
                                                 •    Resumen del estado de salud de tus empleados <br />
                                                 •    Información relevante para la toma de decisiones <br />
@@ -178,13 +169,10 @@
                                     </v-flex>
                                     <v-flex xs12 md4>
                                     <v-card class="elevation-0 transparent">
-                                        <v-card-text class="text-xs-center">
-                                        <v-icon x-large class="white--text text--lighten-2">mdi-account-plus</v-icon>
-                                        </v-card-text>
                                         <v-card-title primary-title class="layout justify-center">
                                         <div class="headline white--text">Beneficios Persona</div>
                                         </v-card-title>
-                                        <v-card-text class="white--text">
+                                        <v-card-text class="white--text" style="font-size: 140%;">
                                             •    Cuidarás tu salud <br />
                                             •    Reportarás tu estado de manera fácil <br />
                                             •    Te capacitarás de manera sencilla <br />
@@ -196,13 +184,10 @@
                                     </v-flex>
                                     <v-flex xs12 md4>
                                     <v-card class="elevation-0 transparent">
-                                        <v-card-text class="text-xs-center">
-                                        <v-icon x-large class="white--text text--lighten-2">mdi-account-multiple</v-icon>
-                                        </v-card-text>
                                         <v-card-title primary-title class="layout justify-center">
                                         <div class="headline text-xs-center white--text">Beneficios Comunidad</div>
                                         </v-card-title>
-                                        <v-card-text class="white--text">
+                                        <v-card-text class="white--text" style="font-size: 140%;">
                                             •    Compartir información de cuidado con seres cercanos <br />
                                             •    Desarrollar hábitos de cuidado personal <br />
                                             •    Colaborar con el gobierno para reporte oportuno de información relevante al COVID-19 <br />
@@ -261,7 +246,7 @@
                     <v-card
                         flat
                         tile
-                        class="accent lighten-1 white--text text-center"
+                        class="gray lighten-1 white--text text-center"
                     >
                         <v-card-text>
                         <v-btn

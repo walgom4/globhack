@@ -122,6 +122,20 @@ const AdminService = {
     } catch (ex) {
         throw ex;
     }
+  },
+
+  //servicio obtener historico
+  async getHistoricTracing(id) {
+    try {
+        var response = await ApiService.get("/userHealthRegister/",{
+          params: {
+            user_fk_health: id
+          }
+        });
+        return response;
+    } catch (ex) {
+        throw ex;
+    }
   }
 };
 
