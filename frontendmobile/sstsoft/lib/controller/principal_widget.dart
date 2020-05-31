@@ -2,6 +2,7 @@ import 'package:after_layout/after_layout.dart';
 // import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:sstsoft/controller/login_widget.dart';
 import 'package:sstsoft/controller/menu/arl_info_widget.dart';
 import 'package:sstsoft/controller/menu/end_journey_widget.dart';
 import 'package:sstsoft/controller/menu/feeling_bad_widget.dart';
@@ -81,7 +82,9 @@ class _PrincipalWidgetState extends State<PrincipalWidget>
             _createDrawerItem(
               icon: Icons.close,
               text: "Cerrar sesión",
-              onTap: () {},
+              onTap: () async {
+                await logout();
+              },
             ),
           ],
         ),
@@ -256,5 +259,11 @@ class _PrincipalWidgetState extends State<PrincipalWidget>
       ),
       onTap: onTap,
     );
+  }
+
+  logout() async {
+    await loginService.logoutUser();
+    Navigator.of(context).pushNamedAndRemoveUntil(
+        LoginWidget.name, (Route<dynamic> route) => false);
   }
 }

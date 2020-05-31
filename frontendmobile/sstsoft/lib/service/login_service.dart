@@ -27,7 +27,18 @@ class LoginService {
       await prefs.setString(userPreferences, user.username);
       await prefs.setBool(journeyStarted, false);
     } catch (ex, stacktrace) {
-      print(stacktrace);
+      print(ex);
+      throw ex;
+    }
+  }
+
+  Future<void> logoutUser() async {
+    try {
+      await prefs.deleteValue(tokenPreferences);
+      await prefs.deleteValue(userPreferences);
+      await prefs.deleteValue(journeyStarted);
+    } catch (ex, stacktrace) {
+      print(ex);
       throw ex;
     }
   }
@@ -39,7 +50,7 @@ class LoginService {
       RecoveryPasswordStatusResponse passwordStatus = RecoveryPasswordStatusResponse.fromJson(response);
       return passwordStatus;
     } catch (ex, stacktrace) {
-      print(stacktrace);
+      print(ex);
       throw ex;
     }
   }
@@ -49,7 +60,7 @@ class LoginService {
       String token = await prefs.getString(tokenPreferences);
       return token != null && token.isNotEmpty;
     } catch (ex, stacktrace) {
-      print(stacktrace);
+      print(ex);
       throw ex;
     }
   }
@@ -59,7 +70,7 @@ class LoginService {
       bool isJourneyStarted = await prefs.getBool(journeyStarted);
       return journeyStarted == null ? false : isJourneyStarted;
     } catch (ex, stacktrace) {
-      print(stacktrace);
+      print(ex);
       throw ex;
     }
   }
@@ -68,7 +79,7 @@ class LoginService {
     try {
       await prefs.setBool(journeyStarted, finished);
     } catch (ex, stacktrace) {
-      print(stacktrace);
+      print(ex);
       throw ex;
     }
   }
