@@ -3,6 +3,7 @@ import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_youtube/flutter_youtube.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:sstsoft/cons/data_cons.dart';
 import 'package:sstsoft/controller/login_widget.dart';
 import 'package:sstsoft/controller/menu/arl_info_widget.dart';
 import 'package:sstsoft/controller/menu/end_journey_widget.dart';
@@ -14,6 +15,7 @@ import 'package:sstsoft/controller/transition/fade_route.dart';
 import 'package:sstsoft/model/response/resources_response.dart';
 import 'package:sstsoft/service/login_service.dart';
 import 'package:sstsoft/service/resource_service.dart';
+import 'package:device_apps/device_apps.dart';
 
 class PrincipalWidget extends StatefulWidget {
   static const String name = '/principal';
@@ -31,6 +33,9 @@ class _PrincipalWidgetState extends State<PrincipalWidget>
 
   ///Validate if work journey is finished
   bool journeyStarted = true;
+
+  ///User name data
+  String userName = "";
 
   ///Login service reference
   LoginService loginService = LoginService();
@@ -72,6 +77,7 @@ class _PrincipalWidgetState extends State<PrincipalWidget>
   void afterFirstLayout(BuildContext context) async {
     this.journeyStarted = await loginService.returnIfUserJourneyIsStarted();
     this.resources = await resourceService.findHandsVideo();
+    this.userName = await loginService.getUserName();
     setState(() {});
   }
 
@@ -89,11 +95,11 @@ class _PrincipalWidgetState extends State<PrincipalWidget>
           padding: EdgeInsets.zero,
           children: <Widget>[
             _createHeader(),
-            _createDrawerItem(
-              icon: Icons.settings,
-              text: "Configuración",
-              onTap: () {},
-            ),
+            // _createDrawerItem(
+            //   icon: Icons.settings,
+            //   text: "Configuración",
+            //   onTap: () {},
+            // ),
             _createDrawerItem(
               icon: Icons.close,
               text: "Cerrar sesión",
@@ -172,7 +178,9 @@ class _PrincipalWidgetState extends State<PrincipalWidget>
                 color: Colors.white,
               ),
               color: Colors.teal,
-              onTap: () {},
+              onTap: () async {
+                await launchCoronapp();
+              },
             ),
             makeDashboardItem(
               new Text(
@@ -233,7 +241,7 @@ class _PrincipalWidgetState extends State<PrincipalWidget>
       margin: EdgeInsets.zero,
       padding: EdgeInsets.zero,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           SizedBox(
             height: 20,
@@ -246,7 +254,7 @@ class _PrincipalWidgetState extends State<PrincipalWidget>
             height: 20,
           ),
           Text(
-            "Nombre de usuario",
+            this.userName,
             style: TextStyle(
                 color: Colors.black,
                 fontSize: 20.0,
@@ -271,6 +279,29 @@ class _PrincipalWidgetState extends State<PrincipalWidget>
       ),
       onTap: onTap,
     );
+  }
+
+  launchCoronapp() async {
+    bool coronappInstalled =
+        await DeviceApps.isAppInstalled(DataCons.coronappPackageRef);
+    if (coronappInstalled) {
+      DeviceApps.openApp(DataCons.coronappPackageRef);
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          content: Text("Por favor, instala CoronApp"),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Ok'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        ),
+      );
+    }
   }
 
   logout() async {

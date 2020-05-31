@@ -43,27 +43,9 @@ const AdminService = {
   async editRegistersUnique(data) {
     try {
         var response = await ApiService.put("/user/{"+data.id+"}", {
-          
-            idType_fk_user: data.idType_fk_user,
-            email: data.email,
-            name: data.name,
-            last_name: data.last_name,
-            phone: data.phone,
-            address: data.address,
-            birthday: data.birthday,
-            gender_fk_user: data.gender_fk_user,
-            eps_fk_user: data.eps_fk_user,
-            job: data.job,
-            boss: data.boss,
-            area_fk_user: data.area_fk_user,            
-            transport_fk_user: data.transport_fk_user,
-            risk: data.risk,
-            who_risk: data.who_risk,
-            health_system: data.health_system,
-            who_health: data.who_health,
-            emergency_contact_name: data.emergency_contact_name,
-            emergency_contact_relationship: data.emergency_contact_relationship,
-            emergency_contact_phone: data.emergency_contact_phone
+
+            is_sst: data.is_sst,
+            area_fk_user: data.area_fk_user
           
         });
         return response;

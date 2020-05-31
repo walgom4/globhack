@@ -54,8 +54,7 @@
                             </v-card-text>
                             </v-card>
                     </v-flex>
-                </v-layout>
-              
+                </v-layout>              
           </v-card-text>
   
           <v-divider></v-divider>

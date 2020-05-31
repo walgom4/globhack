@@ -229,12 +229,16 @@
                         <v-card class="elevation-0 transparent">
 
                             <v-card-text>
+
                             <v-flex xs12>
-                                <v-text-field color="accent" filled label="Email" :rules="emailRules" v-model="email" hint="Ingrese su Email!" persistent-hint></v-text-field>
+                                <v-text-field color="accent" filled label="Nombre" :rules="nameRules" v-model="email" hint="Ingrese su Nombre" persistent-hint></v-text-field>
+                            </v-flex>
+                            <v-flex xs12>
+                                <v-text-field color="accent" filled label="Email" :rules="emailRules" v-model="email" hint="Ingrese su Email" persistent-hint></v-text-field>
                             </v-flex>
 
                             <v-flex xs12>
-                                <v-text-field color="accent" filled label="Teléfono" v-model="telefono" hint="Ingrese su número de Telefono!" persistent-hint></v-text-field>
+                                <v-text-field color="accent" filled label="Teléfono" v-model="telefono" hint="Ingrese su número de Telefono" persistent-hint></v-text-field>
                             </v-flex>
 
                             <v-flex xs12>
@@ -271,7 +275,8 @@
                         </v-card-text>
                 
                         <v-card-text class="white--text pt-0">
-                        Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus commodo interdum. Praesent ut risus eget metus luctus accumsan id ultrices nunc. Sed at orci sed massa consectetur dignissim a sit amet dui. Duis commodo vitae velit et faucibus. Morbi vehicula lacinia malesuada. Nulla placerat augue vel ipsum ultrices, cursus iaculis dui sollicitudin. Vestibulum eu ipsum vel diam elementum tempor vel ut orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                            En esta época de incertidumbre y temor, queremos ayudar a las personas a que encuentren maneras de estar seguros y poder así, aprender a convivir en esta “nueva normalidad”. Ahora es más importante que nunca que pensemos no sólo en nosotros mismos sino también en todos los que nos rodean, por ello te recordamos:
+                            “Cuidándote a ti, nos cuidas a todos”
                         </v-card-text>
                 
                         <v-divider></v-divider>
@@ -317,6 +322,14 @@ export default {
       email: "",
       telefono: "",
       asunto: "",
+      nameRules: [
+        v => {
+          return !!v || "Nombre Requerido";
+        },
+        v =>
+          /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
+          "E-mail debe ser válido"
+      ],
       asuntoRules: [
         v => {
           return !!v || "Asunto Requerido";

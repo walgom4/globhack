@@ -49,11 +49,11 @@ export default {
     },
     data: () => ({
         cards: [
-        { title: 'Registros Pendientes', src: require(`@/assets/rp.jpg`),  text: "Gestión de registros pendientes de empleados.", url:"/registers", flex: 4 },
-        { title: 'Estadísticas', src: require(`@/assets/es.jpg`), text: "Gráficas para ayuda a toma de decisiones.", url:"/reports", flex: 4 },
-        { title: 'Seguimientos', src: require(`@/assets/seg.jpg`), text: "Seguimiento a posibles casos de Covid 19.", url:"/tracing", flex: 4 },
-        { title: 'Información', src: require(`@/assets/es.jpg`), text: "Infografía disponible", url:"/info", flex: 6 },
-        { title: 'ARL', src: require(`@/assets/ARL.png`), text: "Gestion de información de ARL", url:"/arl", flex: 6 }
+        { title: 'Registros Pendientes', src: require(`@/assets/RegistrosPendientes.png`),  text: "Verifica los nuevos usuarios y completa su información.", url:"/registers", flex: 4 },
+        { title: 'Estadísticas', src: require(`@/assets/Estadisticas.png`), text: "Da un vistazo general a la situación de tu empresa.", url:"/reports", flex: 4 },
+        { title: 'Seguimientos', src: require(`@/assets/Seguimientos.png`), text: "Controla y verifica el estado de tus empleados.", url:"/tracing", flex: 4 },
+        { title: 'Información', src: require(`@/assets/Informacion.png`), text: "Accede a las capacitaciones y mantente seguro.", url:"/info", flex: 6 },
+        { title: 'ARL', src: require(`@/assets/ARL.png`), text: "Revisa y edita la información de tu ARL.", url:"/arl", flex: 6 }
         ],
     }),
 }

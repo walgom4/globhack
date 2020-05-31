@@ -13,6 +13,8 @@ class DataCons {
     "A pie",
   ];
 
+  static final coronappPackageRef = "co.gov.ins.guardianes";
+
   ///All health status questions
   static final Map<String, String> healthStatusQuestions = {
     "symptomQuestion":

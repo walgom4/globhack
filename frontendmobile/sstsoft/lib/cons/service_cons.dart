@@ -1,7 +1,7 @@
 class ServiceCons{
 
   ///SSTSoft backend URL
-  static final BASE_URL = "http://806ae68f0c92.ngrok.io";
+  static final BASE_URL = "http://b9581018dbab.ngrok.io";
 
   ///SSTSoft Login service URL repository
   static final LOGIN = "/api/auth/login/";
@@ -20,6 +20,9 @@ class ServiceCons{
   static final FIND_CLOTHES = "/api/resources/3/";
   static final FIND_SHOES = "/api/resources/4/";
   static final FIND_GLASSES = "/api/resources/5/";
+  static final FIND_MASK = "/api/resources/6/";
+  static final FIND_GLOVES = "/api/resources/7/";
+  static final FIND_SYMPTOMS = "/api/resources/8/";
   static final FIND_ENTITY = "/api/entity/2/";
 
 }

@@ -2,7 +2,7 @@ class Resources {
   String url;
   int id;
   String code;
-  Null image;
+  String image;
   String resourceUrl;
   String text;
 

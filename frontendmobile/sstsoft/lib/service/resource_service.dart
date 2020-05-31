@@ -65,6 +65,39 @@ class ResourceService {
       throw ex;
     }
   }
+  Future<Resources> findMask() async {
+    try {
+      dynamic response = await client.fetchGet(
+          ServiceCons.FIND_MASK, Map<String, dynamic>());
+      Resources resource = Resources.fromJson(response);
+      return resource;
+    } catch (ex, stacktrace) {
+      print(stacktrace);
+      throw ex;
+    }
+  }
+  Future<Resources> findGloves() async {
+    try {
+      dynamic response = await client.fetchGet(
+          ServiceCons.FIND_GLOVES, Map<String, dynamic>());
+      Resources resource = Resources.fromJson(response);
+      return resource;
+    } catch (ex, stacktrace) {
+      print(stacktrace);
+      throw ex;
+    }
+  }
+  Future<Resources> findSymptoms() async {
+    try {
+      dynamic response = await client.fetchGet(
+          ServiceCons.FIND_SYMPTOMS, Map<String, dynamic>());
+      Resources resource = Resources.fromJson(response);
+      return resource;
+    } catch (ex, stacktrace) {
+      print(stacktrace);
+      throw ex;
+    }
+  }
   
   Future<Entity> findARL() async {
     try {
