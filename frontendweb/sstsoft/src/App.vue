@@ -1,7 +1,8 @@
 <template>
   <v-app>
-      <MenuPrincipal/>           
-      <MenuLateral/>
+    
+      <MenuPrincipal @emitDrawer="emittedDrawer"  v-if="!$route.meta.public"/>           
+      <MenuLateral :drawerL="drawer" v-if="!$route.meta.public"/>
       <v-content>
         <router-view></router-view>
       </v-content>
@@ -12,6 +13,7 @@
           dark
           class="font-weight-medium"
           color="black"
+          v-if="!$route.meta.public"
         >
           <v-col
             class="text-center"
@@ -35,7 +37,12 @@ export default {
   },
 
   data: () => ({
-    //
+    drawer: false
   }),
+  methods:{
+    emittedDrawer(value){
+      this.drawer = value
+    }
+  }
 };
 </script>
