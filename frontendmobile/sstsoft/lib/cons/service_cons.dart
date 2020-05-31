@@ -5,6 +5,7 @@ class ServiceCons{
 
   ///SSTSoft Login service URL repository
   static final LOGIN = "/api/auth/login/";
+  static final RESET_PASSWORD = "/api/auth/password/reset/";
   ///SSTSoft Register service URL repository
   static final REGISTER_USER = "/api/user/";
   static final REGISTER_DAILY_FORM = "/api/healthRegister/";
