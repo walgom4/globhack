@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:sstsoft/cons/service_cons.dart';
 import 'package:sstsoft/model/request/recovery_password_model.dart';
+import 'package:sstsoft/model/request/schedule_model.dart';
 import 'package:sstsoft/model/request/user_model.dart';
 import 'package:sstsoft/model/response/auth_token_response.dart';
 import 'package:sstsoft/model/response/password_status_response.dart';
@@ -13,6 +16,7 @@ class LoginService {
   static final tokenPreferences = "token";
   static final userPreferences = "user";
   static final journeyStarted = "journeyStarted";
+  static final journeySchedule = "journeySchedule";
 
   LoginService() {
     client.setBaseUrl(ServiceCons.BASE_URL);
@@ -37,17 +41,20 @@ class LoginService {
       await prefs.deleteValue(tokenPreferences);
       await prefs.deleteValue(userPreferences);
       await prefs.deleteValue(journeyStarted);
+      await prefs.deleteValue(journeySchedule);
     } catch (ex, stacktrace) {
       print(ex);
       throw ex;
     }
   }
 
-  Future<RecoveryPasswordStatusResponse> recoveryUserPassword(RecoveryPasswordModel recoveryPasswordModel) async {
+  Future<RecoveryPasswordStatusResponse> recoveryUserPassword(
+      RecoveryPasswordModel recoveryPasswordModel) async {
     try {
-      dynamic response =
-          await client.fetchPost(ServiceCons.RESET_PASSWORD, recoveryPasswordModel.toJson());
-      RecoveryPasswordStatusResponse passwordStatus = RecoveryPasswordStatusResponse.fromJson(response);
+      dynamic response = await client.fetchPost(
+          ServiceCons.RESET_PASSWORD, recoveryPasswordModel.toJson());
+      RecoveryPasswordStatusResponse passwordStatus =
+          RecoveryPasswordStatusResponse.fromJson(response);
       return passwordStatus;
     } catch (ex, stacktrace) {
       print(ex);
@@ -82,5 +89,31 @@ class LoginService {
       print(ex);
       throw ex;
     }
+  }
+
+  Future<void> startJourney() async {
+    await setIfUserJourneyIsStarted(true);
+  }
+
+  Future<void> finishJourney() async {
+    await setIfUserJourneyIsStarted(false);
+  }
+
+  Future<void> registerJourneySchedule(ScheduleModel schedule) async {
+    await prefs.setString(journeySchedule, jsonEncode(schedule.toJson()));
+  }
+
+  Future<ScheduleModel> returnRegisteredJourneySchedule() async {
+    try {
+      return ScheduleModel.fromJson(
+          jsonDecode(await prefs.getString(journeySchedule)));
+    } catch (ex, stacktrace) {
+      print(ex);
+      throw ex;
+    }
+  }
+
+  Future<void> deleteJourneySchedule() async {
+    await prefs.deleteValue(journeySchedule);
   }
 }
