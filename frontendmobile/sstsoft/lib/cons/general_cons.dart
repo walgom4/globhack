@@ -17,4 +17,7 @@ class GeneralCons {
 
   ///General text style
   static final TextStyle generalTextStyle = TextStyle(fontSize: 15);
+
+  ///Title text style
+  static final TextStyle titleTextStyle = TextStyle(fontSize: 18, fontWeight: FontWeight.bold);
 }

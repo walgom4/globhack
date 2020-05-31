@@ -29,6 +29,8 @@ class DataCons {
         "¿Convives con personas que estén trabajando de manera presencial en los servicios o atención de salud?",
     "livingPlaceQuestion": "¿Donde vives?",
     "workTransportQuestion": "¿Cómo te desplazas al lugar de trabajo?",
+    "recentlyViralContactQuestion":
+        "¿Recientemente entraste en contacto con una persona sospechosa o positiva por COVID-19?",
   };
 
   static final String disclaimer =
