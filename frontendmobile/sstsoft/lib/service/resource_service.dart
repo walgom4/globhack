@@ -1,11 +1,12 @@
 import 'package:sstsoft/cons/service_cons.dart';
+import 'package:sstsoft/model/response/entity_response.dart';
 import 'package:sstsoft/model/response/resources_response.dart';
 import 'package:sstsoft/util/httpclient.dart';
 
-class RegisterService {
+class ResourceService {
   HttpClient client = HttpClient();
 
-  RegisterService() {
+  ResourceService() {
     this.client.setBaseUrl(ServiceCons.BASE_URL);
   }
 
@@ -58,6 +59,18 @@ class RegisterService {
       dynamic response = await client.fetchGet(
           ServiceCons.FIND_GLASSES, Map<String, dynamic>());
       Resources resource = Resources.fromJson(response);
+      return resource;
+    } catch (ex, stacktrace) {
+      print(stacktrace);
+      throw ex;
+    }
+  }
+  
+  Future<Entity> findARL() async {
+    try {
+      dynamic response = await client.fetchGet(
+          ServiceCons.FIND_ENTITY, Map<String, dynamic>());
+      Entity resource = Entity.fromJson(response);
       return resource;
     } catch (ex, stacktrace) {
       print(stacktrace);

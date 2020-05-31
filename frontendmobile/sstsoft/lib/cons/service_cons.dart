@@ -20,5 +20,6 @@ class ServiceCons{
   static final FIND_CLOTHES = "/api/resources/3/";
   static final FIND_SHOES = "/api/resources/4/";
   static final FIND_GLASSES = "/api/resources/5/";
+  static final FIND_ENTITY = "/api/entity/2/";
 
 }

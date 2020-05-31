@@ -1,6 +1,7 @@
 import 'package:after_layout/after_layout.dart';
 // import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_youtube/flutter_youtube.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:sstsoft/controller/login_widget.dart';
 import 'package:sstsoft/controller/menu/arl_info_widget.dart';
@@ -10,7 +11,9 @@ import 'package:sstsoft/controller/menu/information_widget.dart';
 import 'package:sstsoft/controller/menu/start_journey_widget.dart';
 import 'package:sstsoft/controller/menu/wash_hands_widget.dart';
 import 'package:sstsoft/controller/transition/fade_route.dart';
+import 'package:sstsoft/model/response/resources_response.dart';
 import 'package:sstsoft/service/login_service.dart';
+import 'package:sstsoft/service/resource_service.dart';
 
 class PrincipalWidget extends StatefulWidget {
   static const String name = '/principal';
@@ -31,6 +34,17 @@ class _PrincipalWidgetState extends State<PrincipalWidget>
 
   ///Login service reference
   LoginService loginService = LoginService();
+  ResourceService resourceService = ResourceService();
+  Resources resources;
+
+  void playYoutubeVideo(url) {
+    FlutterYoutube.playYoutubeVideoByUrl(
+        apiKey: "AIzaSyDCHLiZpHDutMsmY0E8r9HHBc-CNDJdg-I",
+        videoUrl: url,
+        autoPlay: true, //default falase
+        fullScreen: false, //default false
+        appBarColor: Colors.blue);
+  }
 
   @override
   void initState() {
@@ -57,6 +71,7 @@ class _PrincipalWidgetState extends State<PrincipalWidget>
   @override
   void afterFirstLayout(BuildContext context) async {
     this.journeyStarted = await loginService.returnIfUserJourneyIsStarted();
+    this.resources = await resourceService.findHandsVideo();
     setState(() {});
   }
 
@@ -104,10 +119,7 @@ class _PrincipalWidgetState extends State<PrincipalWidget>
                 color: Colors.white,
               ),
               color: Colors.blue,
-              onTap: () => Navigator.push(
-                context,
-                FadeRoute(page: WashHandsWidget()),
-              ),
+              onTap: () => playYoutubeVideo(this.resources.resourceUrl),
             ),
             makeDashboardItem(
               new Text("Me siento mal",
