@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class FeelingBadWidget extends StatefulWidget {
@@ -19,7 +20,12 @@ class _FeelingBadWidgetState extends State<FeelingBadWidget> {
         title: Text("Me siento mal"),
         backgroundColor: Colors.red,
       ),
-      body: Container(),
+      body: Center(
+        child: CachedNetworkImage(
+          placeholder: (context, url) => CircularProgressIndicator(),
+          imageUrl: 'https://picsum.photos/250?image=9',
+        ),
+      ),
     );
   }
 }

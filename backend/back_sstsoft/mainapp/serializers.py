@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from mainapp.models import User, area, eps, gender, idType, healthRegister, transport, resources
+from mainapp.models import User, area, eps, gender, idType, healthRegister, transport, resources, entity, entityType
 
 # user serializer
 class UserSerializer(serializers.ModelSerializer):
@@ -11,23 +11,17 @@ class UserSerializer(serializers.ModelSerializer):
                 'eps_fk_user','job','boss','area_fk_user', 'photo', 'transport_fk_user', 
                 'risk', 'who_risk', 'health_system', 'who_health', 
                 'emergency_contact_name', 'emergency_contact_relationship', 
-                'emergency_contact_phone')
+                'emergency_contact_phone', 'accept_terms', 'is_sst', 'is_active')
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
         password = validated_data.pop('password')
         user = User(**validated_data)
-        user.is_active = False
+        user.is_active = True
         user.set_password(password)
         user.save()
         #send email here
         return user
-
-    def update(self, instance, validated_data):
-        instance.id = validated_data.get('id', instance.id)
-        instance.save()
-
-        return instance
 
 class areaSerializer (serializers.ModelSerializer):
     class Meta:
@@ -72,3 +66,13 @@ class resourcesSerializer (serializers.ModelSerializer):
     class Meta:
         model = resources
         fields = ('url', 'id','code','image', 'resource_url','text')
+
+class entitySerializer (serializers.ModelSerializer):
+    class Meta:
+        model = entity
+        fields = ('url', 'id','name','image', 'webpage','address', 'phone', 'entityType_fk_entity')
+
+class entityTypeSerializer (serializers.ModelSerializer):
+    class Meta:
+        model = entityType
+        fields = ('url', 'id','name')

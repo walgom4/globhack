@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class WashHandsWidget extends StatefulWidget {
   @override
@@ -19,7 +20,12 @@ class _WashHandsWidgetState extends State<WashHandsWidget> {
         title: Text("Lavado de manos"),
         backgroundColor: Colors.blue,
       ),
-      body: Container(),
+      body: Center(
+        child: CachedNetworkImage(
+          placeholder: (context, url) => CircularProgressIndicator(),
+          imageUrl: 'https://picsum.photos/250?image=9',
+        ),
+      ),
     );
   }
 }

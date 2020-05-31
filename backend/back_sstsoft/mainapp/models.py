@@ -16,6 +16,7 @@ class gender(models.Model):
 
     def __str__(self):
         return "{}".format(self.id)
+
 class area(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
@@ -69,7 +70,8 @@ class User(AbstractUser):
     emergency_contact_name = models.CharField(max_length=150, blank=True, null=True)
     emergency_contact_relationship = models.CharField(max_length=150, blank=True, null=True)
     emergency_contact_phone = models.CharField(max_length=150, blank=True, null=True)
-    #addres
+    accept_terms = models.BooleanField(default=False)
+    is_sst = models.BooleanField(default=False)
     validated = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'id'
@@ -116,6 +118,25 @@ class resources(models.Model):
     image = models.ImageField(upload_to='resources/', null=True, blank=True)
     resource_url = models.CharField(max_length=150, blank=True, null=True)
     text = models.CharField(max_length=1000, blank=True, null=True)
+
+    def __str__(self):
+        return "{}".format(self.id)
+
+class entityType(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=150)
+
+    def __str__(self):
+        return "{}".format(self.id)
+
+class entity(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=150)
+    image = models.ImageField(upload_to='resources/', null=True, blank=True)
+    webpage = models.CharField(max_length=150, blank=True, null=True)
+    address = models.CharField(max_length=150, blank=True, null=True)
+    phone = models.CharField(max_length=50, blank=True, null=True)
+    entityType_fk_entity=models.ForeignKey(entityType, on_delete=models.CASCADE)
 
     def __str__(self):
         return "{}".format(self.id)
