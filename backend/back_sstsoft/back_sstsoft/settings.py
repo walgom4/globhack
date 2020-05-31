@@ -123,7 +123,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Bogota'
 
 USE_I18N = True
 
@@ -143,6 +143,7 @@ STATICFILES_DIRS = (
     'C:/Users/walgom/Documents/elxampp/htdocs/globhack_static/media/',
     'C:/Users/walgom/Documents/elxampp/htdocs/globhack_static/media/users',
     'C:/Users/walgom/Documents/elxampp/htdocs/globhack_static/media/health_register',
+    'C:/Users/walgom/Documents/elxampp/htdocs/globhack_static/media/resources',
 )
 
 CORS_ORIGIN_ALLOW_ALL = True

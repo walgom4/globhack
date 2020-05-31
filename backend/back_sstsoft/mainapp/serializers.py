@@ -1,12 +1,12 @@
 from rest_framework import serializers
-from mainapp.models import User, area, eps, gender, idType, healthRegister, transport
+from mainapp.models import User, area, eps, gender, idType, healthRegister, transport, resources
 
 # user serializer
 class UserSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = User
-        fields = ('url', 'identification', 'username', 'idType_fk_user', 'email', 'password',
+        fields = ('url', 'id', 'username', 'idType_fk_user', 'email', 'password',
                 'name','last_name','phone', 'address','birthday','gender_fk_user',
                 'eps_fk_user','job','boss','area_fk_user', 'photo', 'transport_fk_user', 
                 'risk', 'who_risk', 'health_system', 'who_health', 
@@ -24,7 +24,7 @@ class UserSerializer(serializers.ModelSerializer):
         return user
 
     def update(self, instance, validated_data):
-        instance.identification = validated_data.get('identification', instance.identification)
+        instance.id = validated_data.get('id', instance.id)
         instance.save()
 
         return instance
@@ -67,3 +67,8 @@ class healthRegisterSerializer (serializers.ModelSerializer):
         'diarrhea', 'threw_up', 'other', 'user_fk_health', 'temperature', 
         'photo_temperature', 'photo_workspace', 'photo_selfie', 'observations',
         'health_condition', 'medical_file', 'ill', 'who_ill', 'date')
+
+class resourcesSerializer (serializers.ModelSerializer):
+    class Meta:
+        model = resources
+        fields = ('url', 'id','code','image', 'resource_url','text')

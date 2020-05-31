@@ -39,7 +39,7 @@ class transport(models.Model):
 
 #user model
 class User(AbstractUser):
-    identification = models.CharField(max_length=50, unique=True, primary_key=True)
+    id = models.CharField(max_length=50, unique=True, primary_key=True)
     username = models.CharField(
         blank=True, null=True, max_length=50, unique=True)
     idType_fk_user = models.ForeignKey(
@@ -72,11 +72,11 @@ class User(AbstractUser):
     #addres
     validated = models.BooleanField(default=False)
 
-    USERNAME_FIELD = 'identification'
+    USERNAME_FIELD = 'id'
     REQUIRED_FIELDS = ['username']
 
     def __str__(self):
-        return "{}".format(self.identification)
+        return "{}".format(self.id)
 
 #health register
 class healthRegister(models.Model):
@@ -105,6 +105,17 @@ class healthRegister(models.Model):
     ill = models.BooleanField(default=False)
     who_ill = models.CharField(max_length=150, blank=True, null=True)
     date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+
+    def __str__(self):
+        return "{}".format(self.id)
+
+
+class resources(models.Model):
+    id = models.AutoField(primary_key=True)
+    code = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='resources/', null=True, blank=True)
+    resource_url = models.CharField(max_length=150, blank=True, null=True)
+    text = models.CharField(max_length=1000, blank=True, null=True)
 
     def __str__(self):
         return "{}".format(self.id)

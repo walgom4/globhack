@@ -1,6 +1,6 @@
 from django.conf.urls import url, include
 from rest_framework import routers
-from mainapp.views import UserViewSet, areaViewSet, epsViewSet, genderViewSet, idTypeViewSet, healthRegisterViewSet, transportViewSet
+from mainapp.views import UserViewSet, areaViewSet, epsViewSet, genderViewSet, idTypeViewSet, healthRegisterViewSet, transportViewSet, resourcesViewSet
 
 router = routers.DefaultRouter()
 router.register(r'user', UserViewSet)
@@ -10,6 +10,7 @@ router.register(r'gender', genderViewSet)
 router.register(r'transport', transportViewSet)
 router.register(r'idType', idTypeViewSet)
 router.register(r'healthRegister', healthRegisterViewSet)
+router.register(r'resources', resourcesViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),

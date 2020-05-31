@@ -325,6 +325,54 @@
 			"response": []
 		},
 		{
+			"name": "get resources",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "12345678",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{server_url}}/api/resources/",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"api",
+						"resources",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "save user",
 			"request": {
 				"auth": {
@@ -355,7 +403,7 @@
 					"mode": "formdata",
 					"formdata": [
 						{
-							"key": "identification",
+							"key": "id",
 							"value": "1016031266",
 							"description": "identificacion",
 							"type": "text"
