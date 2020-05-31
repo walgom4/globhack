@@ -1,7 +1,7 @@
 <template>
   <v-dialog
         v-model="modalOpenLocal"
-        width="700"
+        width="600"
         persistent
     >
   
@@ -10,7 +10,7 @@
             class="headline accent"
             primary-title
           >
-            <span style="margin:auto; display:table;"> <strong > Editar Usuario </strong> </span> 
+            <span style="margin:auto; display:table;"> <strong > Editar Usuario - {{userIdLocal}}</strong> </span> 
           </v-card-title>
   
           <v-card-text>
@@ -22,39 +22,39 @@
                                 ref="form"
                                 v-model="valid"
                                 lazy-validation
-                                @submit="login"
+                                @submit="edit"
                                 >
 
-                                    <v-layout row wrap> 
-                                        <v-flex sm6 lg6>
-                                            <v-text-field
-                                                append-icon="mdi-account-search"
-                                                name="login"
-                                                label="Usuario"
-                                                type="text"
-                                                :rules="userRules"
-                                                v-model="model.user"
-                                                color="black"
-                                                required
-                                            ></v-text-field>
-                                        </v-flex>
+                                <v-container grid-list-xl fluid>
+                                        <v-layout row wrap>
+                                            <v-flex lg8 sm12>
+                                                <v-autocomplete
+                                                v-model="area_fk_user_local"
+                                                :items="areas"
+                                                item-text="name"
+                                                item-value="id"
+                                                color="accent"
+                                                item-color="accent"
+                                                outlined
+                                                dense
+                                                clearable
+                                                label="Area"                                      
+                                                ></v-autocomplete>
+                                            </v-flex> 
 
-                                        <v-flex sm6 lg6>
-                                            <v-text-field
-                                                :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
-                                                name="password"
-                                                label="Contraseña"
-                                                id="password"
-                                                :type="value ? 'password' : 'text'"
-                                                @click:append="() => (value = !value)"
-                                                :rules="passRules"
-                                                v-model="model.password"
-                                                color="black"
-                                                required
-                                            ></v-text-field>
-                                        </v-flex>
-                                        <v-btn block color="accent" type="submit" :loading="loading" :disabled="!valid">Ingresar</v-btn>
-                                    </v-layout>   
+                                            <v-flex lg4 sm12>
+                                                <v-switch
+                                                    color="accent"
+                                                    style="margin:auto;"
+                                                    v-model="model.is_sst"
+                                                    :label="'SST: Si / No'"
+                                                ></v-switch> 
+                                            </v-flex>
+                                    </v-layout>
+                                </v-container>                                     
+                                        
+                                    <v-btn block color="accent" type="submit" :disabled="!valid">Editar</v-btn>
+                                      
                                 </v-form>
                             </v-card-text>
                             </v-card>
@@ -81,42 +81,89 @@
 </template>
 
 <script>
+import { AdminService } from "@/services/admin.service";
 export default {
     name: 'editarUserModal',
     data() {
         return {
-            //para mostrar ocultar password
-            value: String,
-            loading: false,
             model: {
-                user: "",
-                password: ""               
+                id: "",
+                area_fk_user: 0,
+                is_sst: true              
             },
             valid: true,
-            userRules: [
-                v => !!v || "Usuario Requerido"
-            ],
-            passRules: [
-                v => !!v || "Contraseña Requerida"
-            ]
+            areas: []
         }            
     },
+    created(){
+        this.obtainAreas();
+    },
     props: {
-        modalLoginVisible: {
+        modalEditVisible: {
           type: Boolean,
           default: false
+        },
+        userId: {
+          type: String
+        },
+        is_sst: {
+          type: Boolean
+        },
+        area_fk_user: {
+          type: Number,
+          default: 0
         }
+    },
+    methods: {
+        closeModal(){           
+            this.modalOpenLocal = false;
+            this.resetForm();
+        },
+        resetForm(){
+            this.model.id = ""
+            this.model.area_fk_user = ""
+            this.model.is_sst = true
+        },
+        async obtainAreas () {
+            const respuesta = await AdminService.getArea();
+            this.areas = respuesta.data
+        },
+        async edit(e){
+            e.preventDefault()
+            if (this.$refs.form.validate()) {
+                
+                this.model.id = this.userIdLocal
+                this.model.area_fk_user = this.area_fk_user_local
+
+                const recursos = await AdminService.editRegistersUnique(this.model);
+                console.log(recursos)
+            }
+        },
     },
     computed: {
         modalOpenLocal: { 
             get: function () {
-                return this.modalLoginVisible
+                return this.modalEditVisible
             },
             set (value) {
                 if (!value) {
-                  this.$emit('loginModalClosed', false)
+                  this.$emit('editModalClosed', false)
                 }
             }
+        },
+        userIdLocal(){           
+            return this.userId
+        },
+        is_sst_local:{           
+            get: function () {
+                return this.is_sst
+            },
+            set (value) {
+                this.model.is_sst = value
+            }
+        },
+        area_fk_user_local(){           
+            return this.area_fk_user
         }
     }
 }

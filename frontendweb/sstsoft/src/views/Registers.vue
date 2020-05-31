@@ -1,6 +1,6 @@
 <template>
   <div>
-     <EditUserModal :modalLoginVisible.sync="openModal" @loginModalClosed="openModal = false"></EditUserModal>
+     <EditUserModal :modalEditVisible.sync="openModal" :userId="userId" :is_sst="is_sst" :area_fk_user="area" @editModalClosed="openModal = false"></EditUserModal>
 
       <v-container grid-list-xl fluid>
             <v-layout row wrap>
@@ -59,6 +59,9 @@ export default {
                     },
                     width:100, align:"center",cellClick:(e, cell)=>{ 
                         console.log('edi', cell._cell.row.data.id);
+                        this.userId = cell._cell.row.data.id;
+                        this.is_sst = cell._cell.row.data.is_sst
+                        this.area = parseInt(cell._cell.row.data.area_fk_user)
                         this.openModal = true
                     }},
                     
@@ -76,7 +79,10 @@ export default {
                 //responsiveLayout: true
             },
             datosTable: [],
-            openModal:false
+            openModal:false,
+            userId: "",
+            is_sst: false,
+            area: ""
         }
     },
     mounted(){
@@ -89,9 +95,6 @@ export default {
             console.log('service', respuesta.data)
             this.datosTable = respuesta.data                    
             
-        },
-        edit(data){
-            console.log('registro', data)
         }
     }
 

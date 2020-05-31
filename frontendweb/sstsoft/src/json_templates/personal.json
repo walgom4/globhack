@@ -1,0 +1,36 @@
+{
+    "title": {
+        "text": "Estado del personal",
+        "subtext": "Caracterización",
+        "left": "center"
+    },
+    "tooltip": {
+        "trigger": "item",
+        "formatter": "<br/>{b} : {c} ({d}%)"
+    },
+    "legend": {
+        "bottom": 10,
+        "left": "center",
+        "data": ["Mal", "Bien", "En proceso"]
+    },
+    "series": [
+        {
+            "type": "pie",
+            "radius": "65%",
+            "center": ["50%", "50%"],
+            "selectedMode": "single",
+            "data": [
+                {"value": 15, "name": "Mal"},
+                {"value": 32, "name": "En proceso"},
+                {"value": 44, "name": "Bien"}
+            ],
+            "emphasis": {
+                "itemStyle": {
+                    "shadowBlur": 10,
+                    "shadowOffsetX": 0,
+                    "shadowColor": "rgba(0, 0, 0, 0.5)"
+                }
+            }
+        }
+    ]
+}

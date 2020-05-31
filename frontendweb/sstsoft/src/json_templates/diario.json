@@ -1,0 +1,74 @@
+{
+    "title": {
+        "text": "Sintomas"
+    },
+    "tooltip": {
+        "trigger": "axis",
+        "axisPointer": {
+            "type": "shadow"
+        }
+    },
+    "legend": {
+        "data": ["Si", "No"]
+    },
+    "grid": {
+        "left": 100
+    },
+    "toolbox": {
+        "show": true,
+        "feature": {
+            "saveAsImage": {}
+        }
+    },
+    "xAxis": {
+        "type": "value",
+        "name": "Cantidad",
+        "axisLabel": {
+            "formatter": "{value}"
+        }
+    },
+    "yAxis": {
+        "type": "category",
+        "inverse": true,
+        "data": [
+            "Gripe", "Fiebre", "Tos","Dolor_Garganta","Congestion_Nasal",
+            "Fatiga","Dif_Respirar"
+            ],
+        "axisLabel": {
+            "formatter": null,
+            "margin": 20,
+            "rich": {
+                "value": {
+                    "lineHeight": 30,
+                    "align": "center"
+                }
+            }
+        }
+    },
+    "series": [
+        {
+            "name": "Si",
+            "type": "bar",
+            "data": [165, 170, 14, 5, 6,45,39,50,20,21],
+            "label": {
+                "normal": {
+                    "show": true,
+                    "textBorderColor": "#333",
+                    "textBorderWidth": 2
+                }
+            }
+        },
+        {
+            "name": "No",
+            "type": "bar",
+            "label": {
+                "normal": {
+                    "show": true,
+                    "textBorderColor": "#333",
+                    "textBorderWidth": 2
+                }
+            },
+            "data": [165, 170, 14, 55, 16,5,29,40,29,26]
+        }
+    ]
+}

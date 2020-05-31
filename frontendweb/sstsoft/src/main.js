@@ -12,6 +12,9 @@ Vue.use(VueCookies);
 import VueTabulator from "vue-tabulator";
 Vue.use(VueTabulator);
 
+import { Datetime } from 'vue-datetime'; 
+Vue.component('datetime', Datetime);
+
 
 Vue.config.productionTip = false
 

@@ -1,5 +1,7 @@
 <template>
   <div>
+      <AdminTracingModal :modalVisible.sync="openModal" :userId="userId" @tracingModalClosed="openModal = false"></AdminTracingModal>
+
       <v-container grid-list-xl fluid>
             <v-layout row wrap>
                 <v-flex lg12 sm12 xs12>
@@ -18,10 +20,12 @@
 /* eslint-disable no-unused-vars */
 import VWidget from '@/components/VWidget';
 import { AdminService } from "@/services/admin.service";
+import AdminTracingModal from "@/components/AdminTracingModal";
 export default {
     name: 'Tracing',
     components: {
-        VWidget  
+        VWidget,
+        AdminTracingModal  
     },
     data() {
         return {
@@ -44,6 +48,7 @@ export default {
                     }
                 },
                 columns:[
+                    {title:"Me siento Mal", field:"ill", hozAlign:"center",formatter:"tickCross"},
                     {title:"Documento", field:"user_fk_health.id", hozAlign:"center", headerFilter:true},
                     {title:"Nombre", field:"user_fk_health.name", hozAlign:"right", headerFilter:true},
                     {title:"Apellido", field:"user_fk_health.last_name", hozAlign:"right", headerFilter:true},
@@ -60,35 +65,37 @@ export default {
                     {title:"Temperatura", field:"temperature", hozAlign:"center"},
                     {title:"Fecha", field:"date", hozAlign:"center"},
                     {title:"Observaciones", field:"observations", hozAlign:"center"},
-                    {title:"Editar", field: "ID" ,formatter:function(cell, formatterParams, onRendered){
-                        return "<i class = 'material-icons'>edit</i>";
+                    {title:"Atender", field:"id", formatter:function(cell, formatterParams, onRendered){
+                        return "<i class = 'material-icons'>accessibility_new</i>";
                     },
                     width:100, align:"center",cellClick:(e, cell)=>{ 
-                        console.log('edi', cell._cell.row.data.id);
+                        console.log('edi', cell._cell.row.data.user_fk_health.id);
+                        this.userId = cell._cell.row.data.user_fk_health.id
                         this.openModal = true
                     }},
-                    {title:"Historial", field: "ID" ,formatter:function(cell, formatterParams, onRendered){
+                    {title:"Historial", field:"id", formatter:function(cell, formatterParams, onRendered){
                         return "<i class = 'material-icons'>history</i>";
                     },
                     width:100, align:"center",cellClick:function(e, cell){ 
-                        console.log('hist', cell._cell.row.data.id);
+                        console.log('hist', cell._cell.row.data.user_fk_health.id);
                     }},
                     
 
                 ],
                 placeholder: "Información de Registros Pendientes",
-                height: 450,
+                height: 550,
                 layout:"fitColumns",
                 layoutColumnsOnNewData: true,
                 tooltips: true,
                 pagination: 'local',
-                paginationSize: 11,
+                paginationSize: 12,
                 clipboard: "copy",
                 headerFilterPlaceholder:"Buscar...",
                 //responsiveLayout: true
             },
             datosTable: [],
-            openModal:false
+            openModal:false,
+            userId: ""
         }
     },
     mounted(){
@@ -112,7 +119,7 @@ export default {
 <style>
     .table-wrapper {
         width: 100%;
-        height: 450px;
+        height: 600px;
     }
 
     .tabulator .tabulator-header .tabulator-col {
