@@ -464,7 +464,7 @@ class _RegisterWidgetState extends State<RegisterWidget>
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      "Dificultad para respirar",
+                      "Dificultad en respirar",
                       style: GeneralCons.generalTextStyle,
                     ),
                     Spacer(),
