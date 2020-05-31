@@ -71,7 +71,7 @@ class _InformationWidgetState extends State<InformationWidget>
       ),
       Step(
         title: Text(
-          "Desinfección suela de los zapatos",
+          resources4.code ?? "",
         ),
         isActive: true,
         state: StepState.complete,
