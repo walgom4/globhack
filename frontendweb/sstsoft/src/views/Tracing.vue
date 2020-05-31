@@ -1,6 +1,7 @@
 <template>
   <div>
       <AdminTracingModal :modalVisible.sync="openModal" :userId="userId" @tracingModalClosed="openModal = false"></AdminTracingModal>
+      <HistoricTracingModal :modalHVisible.sync="openModalH" :userId="userId" @historicModalClosed="openModalH = false"></HistoricTracingModal>
 
       <v-container grid-list-xl fluid>
             <v-layout row wrap>
@@ -21,11 +22,13 @@
 import VWidget from '@/components/VWidget';
 import { AdminService } from "@/services/admin.service";
 import AdminTracingModal from "@/components/AdminTracingModal";
+import HistoricTracingModal from "@/components/HistoricTracingModal";
 export default {
     name: 'Tracing',
     components: {
         VWidget,
-        AdminTracingModal  
+        AdminTracingModal,
+        HistoricTracingModal  
     },
     data() {
         return {
@@ -69,16 +72,17 @@ export default {
                         return "<i class = 'material-icons'>accessibility_new</i>";
                     },
                     width:100, align:"center",cellClick:(e, cell)=>{ 
-                        console.log('edi', cell._cell.row.data.user_fk_health.id);
                         this.userId = cell._cell.row.data.user_fk_health.id
                         this.openModal = true
                     }},
-                    {title:"Historial", field:"id", formatter:function(cell, formatterParams, onRendered){
-                        return "<i class = 'material-icons'>history</i>";
-                    },
-                    width:100, align:"center",cellClick:function(e, cell){ 
-                        console.log('hist', cell._cell.row.data.user_fk_health.id);
-                    }},
+                    // {title:"Historial", field:"id", formatter:function(cell, formatterParams, onRendered){
+                    //     return "<i class = 'material-icons'>history</i>";
+                    // },
+                    // width:100, align:"center",cellClick:function(e, cell){ 
+                    //     console.log('hist', cell._cell.row.data.user_fk_health.id);
+                    //     this.userId = cell._cell.row.data.user_fk_health.id
+                    //     this.openModalH = true
+                    // }},
                     
 
                 ],
@@ -95,6 +99,7 @@ export default {
             },
             datosTable: [],
             openModal:false,
+            openModalH: false,
             userId: ""
         }
     },
@@ -105,12 +110,8 @@ export default {
         async getTracing() {
             this.datosTable = []            
             const respuesta = await AdminService.getTracing()
-            console.log('service', respuesta.data)
             this.datosTable = respuesta.data                    
             
-        },
-        edit(data){
-            console.log('registro', data)
         }
     }
 }
@@ -129,5 +130,9 @@ export default {
 
     .tabulator .tabulator-header .tabulator-col .tabulator-header-filter {
         background-color: white;
+    }
+
+    .tabulator-col-title{
+        color: white;
     }
 </style>

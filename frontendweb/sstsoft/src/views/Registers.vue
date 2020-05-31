@@ -57,8 +57,7 @@ export default {
                     {title:"Editar", field: "ID" ,formatter:function(cell, formatterParams, onRendered){
                         return "<i class = 'material-icons'>edit</i>";
                     },
-                    width:100, align:"center",cellClick:(e, cell)=>{ 
-                        console.log('edi', cell._cell.row.data.id);
+                    width:100, align:"center",cellClick:(e, cell)=>{
                         this.userId = cell._cell.row.data.id;
                         this.is_sst = cell._cell.row.data.is_sst
                         this.area = parseInt(cell._cell.row.data.area_fk_user)
@@ -92,7 +91,6 @@ export default {
         async getUserRegisters() {
             this.datosTable = []            
             const respuesta = await AdminService.getRegisters()
-            console.log('service', respuesta.data)
             this.datosTable = respuesta.data                    
             
         }
@@ -112,7 +110,11 @@ export default {
         color: black;
     }
 
-    .tabulator .tabulator-header .tabulator-col .tabulator-header-filter {
+    .tabulator .tabulator-header .tabulator-col .tabulator-header-filter{
         background-color: white;
+    }
+
+    .tabulator-col-title{
+        color: white;
     }
 </style>

@@ -7,7 +7,7 @@
   
         <v-card>
           <v-card-title
-            class="headline accent"
+            class="headline accent white--text"
             primary-title
           >
             <span style="margin:auto; display:table;"> <strong > Editar Usuario - {{userIdLocal}}</strong> </span> 
@@ -135,8 +135,7 @@ export default {
                 this.model.id = this.userIdLocal
                 this.model.area_fk_user = this.area_fk_user_local
 
-                const recursos = await AdminService.editRegistersUnique(this.model);
-                console.log(recursos)
+                await AdminService.editRegistersUnique(this.model);
             }
         },
     },
