@@ -15,5 +15,10 @@ class ServiceCons{
   static final FIND_ALL_GENDER = "/api/gender/";
   static final FIND_ALL_DOCUMENT_TYPE = "/api/idType/";
   static final FIND_ALL_TRANSPORT = "/api/transport/";
+  static final FIND_WASH_HAND_VIDEO = "/api/resources/1/";
+  static final FIND_CLEANING_AREA = "/api/resources/2/";
+  static final FIND_CLOTHES = "/api/resources/3/";
+  static final FIND_SHOES = "/api/resources/4/";
+  static final FIND_GLASSES = "/api/resources/5/";
 
 }
