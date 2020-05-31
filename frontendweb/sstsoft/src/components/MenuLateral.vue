@@ -2,7 +2,7 @@
     <v-navigation-drawer
         persistent
         permanent
-        :mini-variant="miniVariant"
+        :mini-variant="drawerChange"
         :clipped="clipped"
         v-model="drawer"
         enable-resize-watcher
@@ -10,6 +10,19 @@
         app
         :width="225"
     >
+      <!-- Tarjeta de usuario -->
+      <v-list-item two-line style="background-color:gray;" :class="drawerChange && 'px-0'">
+              <v-list-item-avatar > 
+                <img src="https://randomuser.me/api/portraits/men/81.jpg">
+              </v-list-item-avatar>
+  
+              <v-list-item-content>
+                <v-list-item-title>Un empleado</v-list-item-title>
+                <v-list-item-subtitle>De un área</v-list-item-subtitle>
+              </v-list-item-content>
+      </v-list-item>
+        
+        <!-- menu lateral -->
         <v-list class="lista">
             <v-list-item v-for="(item, i) in itemsFiltered" :key="i" :to="item.link">
                 <v-list-item-action>
@@ -22,10 +35,18 @@
             </v-list-item>
         </v-list>
     </v-navigation-drawer>
+    
 </template>
 
 <script>
 export default {
+    name: "MenuLateral",
+    props: {
+        drawerL: {
+            type: Boolean,
+            default: true
+        },
+    },
     data() {
       return {
         clipped: false,
@@ -33,34 +54,60 @@ export default {
         fixed: false,
         items: [
           {
-            icon: "dashboard",
-            title: "Dashboard",
-            link: "/dashboard",
+            icon: "mdi-account-star",
+            title: "Menú Principal",
+            link: "/user",
             visible: true
           },
           {
-            icon: "assignment",
-            title: "Accion1",
-            link: "/Accion1",
+            icon: "mdi-folder-multiple",
+            title: "Registros Pendientes",
+            link: "/registers",
             visible: true
           },
           {
-            icon: "edit_location",
-            title: "Accion2",
-            link: "/Accion2",
+            icon: "mdi-chart-pie",
+            title: "Estadísticas",
+            link: "/reports",
+            visible: true
+          },
+          {
+            icon: "mdi-account-switch",
+            title: "Seguimientos",
+            link: "/tracing",
+            visible: true
+          },
+          {
+            icon: "mdi-information",
+            title: "Información",
+            link: "/info",
+            visible: true
+          },
+          {
+            icon: "mdi-hospital-building",
+            title: "ARL",
+            link: "/arl",
             visible: true
           }          
-        ],
-        miniVariant: false,
+        ]
         
       };
-    },
-    
+    },    
     computed: {
         itemsFiltered: function() {
             return this.items.filter(function(u) {
                 return u.visible
             })
+        },
+        drawerChange: {
+            get: function () {
+                return this.drawerL
+            },
+            set (value) {
+                if (!value) {
+                  this.$emit('drawerChanged')
+                }
+            }
         }
     }
 }

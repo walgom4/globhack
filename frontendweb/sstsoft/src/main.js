@@ -4,6 +4,15 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify';
 
+import "@/plugins/echarts";
+
+import VueCookies from 'vue-cookies'
+Vue.use(VueCookies);
+
+import VueTabulator from "vue-tabulator";
+Vue.use(VueTabulator);
+
+
 Vue.config.productionTip = false
 
 new Vue({

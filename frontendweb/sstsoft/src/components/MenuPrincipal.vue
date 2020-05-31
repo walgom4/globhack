@@ -2,7 +2,7 @@
     <span>
         <v-app-bar dark flat fixed app class="accent">
             
-
+            <v-app-bar-nav-icon @click="drawerChanges"></v-app-bar-nav-icon>
             <!-- menu para pantalla pequeña -->
             <span class="hidden-md-and-up">
               <v-menu>
@@ -21,7 +21,7 @@
             <!-- fin menu -->
 
               <img :src="srcImage" width="10%" class="hidden-sm-and-down">
-              <v-btn
+              <!-- <v-btn
                 class="hidden-sm-and-down"
                 v-for="item in itemsFiltered"
                 :key="item.icon"
@@ -29,7 +29,7 @@
                 color="accent"
                 depressed
                 large
-              >{{ item.title }}</v-btn>
+              >{{ item.title }}</v-btn> -->
             
 
             <v-spacer></v-spacer>
@@ -38,8 +38,8 @@
             <v-menu offset-y>
                 <template v-slot:activator="{ on }">
                   <v-btn text v-on="on" color="black">
-                    <v-icon left>expand_more</v-icon>
-                    <span>Menú</span>
+                    <v-icon left>mdi-chevron-down</v-icon>
+                    <span>Configuración</span>
                   </v-btn>
                 </template>
                 <v-list>
@@ -48,7 +48,7 @@
                           <v-icon v-html="link.icon"></v-icon>
                       </v-list-item-action>
 
-                        <v-list-item-title @click="selectorEventos(link.action)">{{ link.text }}</v-list-item-title>
+                        <v-list-item-title @click="eventsSelector(link.action)">{{ link.text }}</v-list-item-title>
                      
                     </v-list-item>
 
@@ -60,6 +60,9 @@
 </template>
 
 <script>
+/* eslint-disable no-unused-vars */
+import { TokenService } from "@/services/storage.service";
+import router from "@/router/index";
 export default {
     data() {
       return {
@@ -81,19 +84,25 @@ export default {
         ],
         title: "SSTSOFT",
         menu: [
-            { icon: 'exit_to_app', text: 'Salida', action: 'logout' }
-        ]
+            { icon: 'mdi-exit-to-app', text: 'Salida', action: 'logout' }
+        ],
+        drawerM: false
 
       };
     },
     methods:{
-      managePerfil(){
-        // eslint-disable-next-line no-unused-vars
-        this.$router.push({ path: "/perfil" }).catch(err => {});
+      logout(){
+        TokenService.removeAllToken();
+        router.push({ name: "LandingPage" }).catch(err => {});
       },
-      selectorEventos(name) {
+      eventsSelector(name) {
         this[name]();
+      },
+      drawerChanges(){
+        this.drawerM = !this.drawerM
+        this.$emit('emitDrawer', this.drawerM)
       }
+
     },
     computed: {
         itemsFiltered: function() {

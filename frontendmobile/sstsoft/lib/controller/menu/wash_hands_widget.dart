@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_youtube/flutter_youtube.dart';
 
 class WashHandsWidget extends StatefulWidget {
   @override
@@ -21,15 +20,7 @@ class _WashHandsWidgetState extends State<WashHandsWidget> {
         title: Text("Lavado de manos"),
         backgroundColor: Colors.blue,
       ),
-      body: Center(
-          child: FlutterYoutube.playYoutubeVideoByUrl(
-          apiKey: "AIzaSyDCHLiZpHDutMsmY0E8r9HHBc-CNDJdg-I",
-          videoUrl: "https://www.youtube.com/watch?v=NMmAj1EKdVo",
-          autoPlay: true, //default falase
-          fullScreen: false, //default false
-          appBarColor: Colors.blue
-        )
-      ),
+      body: Container(),
     );
   }
 }
