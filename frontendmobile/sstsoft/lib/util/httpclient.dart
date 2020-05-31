@@ -173,9 +173,9 @@ class HttpClient {
   handleError(ex) {
     if (ex is DioError) {
       if (ex.response != null) {
-        return new WsException(ex.response.statusCode, ex.response.data);
+        throw new WsException(ex.response.statusCode, ex.response.data);
       } else {
-        return new WsException(500, {'unhandledException': ex.message});
+        throw new WsException(500, {'unhandledException': ex.message});
       }
     } else {
       return ex;

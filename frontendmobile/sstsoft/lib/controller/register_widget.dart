@@ -3,9 +3,11 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:sstsoft/cons/data_cons.dart';
 import 'package:sstsoft/cons/general_cons.dart';
+import 'package:sstsoft/controller/login_widget.dart';
 import 'package:sstsoft/model/request/health_registry_model.dart';
 import 'package:sstsoft/model/request/user_request_model.dart';
 import 'package:sstsoft/model/response/generic_data_item_response.dart';
+import 'package:sstsoft/model/ws_exception.dart';
 import 'package:sstsoft/service/register_service.dart';
 import 'package:sstsoft/util/image_picker_util.dart';
 
@@ -54,15 +56,19 @@ class _RegisterWidgetState extends State<RegisterWidget>
   ///Area list
   List<GenericDataItemResponse> areaList = List();
 
+  ///Transport type listy
+  List<GenericDataItemResponse> transportList = List();
+
   HealthRegistryModel healthRegistryModel = HealthRegistryModel();
   UserRequestModel userRequestModel = UserRequestModel();
   ImageModel imageModel;
 
   @override
   void afterFirstLayout(BuildContext context) async {
-    this.documentTypeList = await registerService.findDocumentType();
+    this.documentTypeList = await registerService.findAllDocumentType();
     this.genreList = await registerService.findAllGender();
     this.areaList = await registerService.findAllArea();
+    this.transportList = await registerService.findAllTransport();
 
     setState(() {});
   }
@@ -163,9 +169,18 @@ class _RegisterWidgetState extends State<RegisterWidget>
                 ),
                 TextFormField(
                   decoration: InputDecoration(labelText: 'Número documento'),
-                  // validator: (value) => registerTextFormFieldValidator(value),
+                  validator: (value) => registerTextFormFieldValidator(value),
                   onSaved: (newValue) {
-                    this.userRequestModel.identification = newValue;
+                    this.userRequestModel.id = newValue;
+                    this.userRequestModel.username = newValue;
+                  },
+                ),
+                TextFormField(
+                  obscureText: true,
+                  decoration: InputDecoration(labelText: 'Contraseña'),
+                  validator: (value) => registerTextFormFieldValidator(value),
+                  onSaved: (newValue) {
+                    this.userRequestModel.password = newValue;
                   },
                 ),
                 TextFormField(
@@ -195,7 +210,8 @@ class _RegisterWidgetState extends State<RegisterWidget>
                       _scaffoldKey.currentState.showSnackBar(
                           SnackBar(content: Text('No has seleccionado fecha')));
                     } else {
-                      _dateController.text = date.toString();
+                      _dateController.text =
+                          GeneralCons.generalDateFormat.format(date);
                       this.userRequestModel.birthday = _dateController.text;
                     }
                   },
@@ -212,7 +228,7 @@ class _RegisterWidgetState extends State<RegisterWidget>
                     },
                   ).toList(),
                   onChanged: (value) {
-                    this.userRequestModel.genderFkUser = value;
+                    this.userRequestModel.genderFkUser = int.parse(value);
                   },
                 ),
               ],
@@ -244,7 +260,7 @@ class _RegisterWidgetState extends State<RegisterWidget>
                   },
                 ).toList(),
                 onChanged: (value) {
-                  this.userRequestModel.areaFkUser = value;
+                  this.userRequestModel.areaFkUser = int.parse(value);
                 },
               ),
               TextFormField(
@@ -619,21 +635,37 @@ class _RegisterWidgetState extends State<RegisterWidget>
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Text("Si"),
-                  Radio(
+                  Radio<yesNo>(
                     value: yesNo.yes,
-                    groupValue: yesNo,
-                    onChanged: (value) {},
+                    groupValue:
+                        convertValueToYesNo(this.healthRegistryModel.ill),
+                    onChanged: (value) {
+                      setState(() {
+                        this.healthRegistryModel.ill =
+                            convertYesNoToValue(value);
+                      });
+                    },
                   ),
                   Text("No"),
-                  Radio(
+                  Radio<yesNo>(
                     value: yesNo.no,
-                    groupValue: yesNo,
-                    onChanged: (value) {},
+                    groupValue:
+                        convertValueToYesNo(this.healthRegistryModel.ill),
+                    onChanged: (value) {
+                      setState(() {
+                        this.healthRegistryModel.ill =
+                            convertYesNoToValue(value);
+                      });
+                    },
                   ),
                 ],
               ),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Parentesco'),
+                // validator: (value) => registerTextFormFieldValidator(value),
+                onSaved: (newValue) {
+                  this.healthRegistryModel.whoIll = newValue;
+                },
               ),
               SizedBox(
                 height: 25,
@@ -647,21 +679,33 @@ class _RegisterWidgetState extends State<RegisterWidget>
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Text("Si"),
-                  Radio(
+                  Radio<yesNo>(
                     value: yesNo.yes,
-                    groupValue: yesNo,
-                    onChanged: (value) {},
+                    groupValue: convertValueToYesNo(this.userRequestModel.risk),
+                    onChanged: (value) {
+                      setState(() {
+                        this.userRequestModel.risk = convertYesNoToValue(value);
+                      });
+                    },
                   ),
                   Text("No"),
-                  Radio(
+                  Radio<yesNo>(
                     value: yesNo.no,
-                    groupValue: yesNo,
-                    onChanged: (value) {},
+                    groupValue: convertValueToYesNo(this.userRequestModel.risk),
+                    onChanged: (value) {
+                      setState(() {
+                        this.userRequestModel.risk = convertYesNoToValue(value);
+                      });
+                    },
                   ),
                 ],
               ),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Parentesco'),
+                // validator: (value) => registerTextFormFieldValidator(value),
+                onSaved: (newValue) {
+                  this.userRequestModel.whoRisk = newValue;
+                },
               ),
               SizedBox(
                 height: 25,
@@ -674,21 +718,37 @@ class _RegisterWidgetState extends State<RegisterWidget>
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Text("Si"),
-                  Radio(
+                  Radio<yesNo>(
                     value: yesNo.yes,
-                    groupValue: yesNo,
-                    onChanged: (value) {},
+                    groupValue:
+                        convertValueToYesNo(this.userRequestModel.healthSystem),
+                    onChanged: (value) {
+                      setState(() {
+                        this.userRequestModel.healthSystem =
+                            convertYesNoToValue(value);
+                      });
+                    },
                   ),
                   Text("No"),
-                  Radio(
+                  Radio<yesNo>(
                     value: yesNo.no,
-                    groupValue: yesNo,
-                    onChanged: (value) {},
+                    groupValue:
+                        convertValueToYesNo(this.userRequestModel.healthSystem),
+                    onChanged: (value) {
+                      setState(() {
+                        this.userRequestModel.healthSystem =
+                            convertYesNoToValue(value);
+                      });
+                    },
                   ),
                 ],
               ),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Parentesco'),
+                // validator: (value) => registerTextFormFieldValidator(value),
+                onSaved: (newValue) {
+                  this.userRequestModel.whoHealth = newValue;
+                },
               ),
               SizedBox(
                 height: 25,
@@ -711,13 +771,27 @@ class _RegisterWidgetState extends State<RegisterWidget>
                 style: GeneralCons.generalTextStyle,
               ),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Nombre completo'),
+                decoration: InputDecoration(
+                  labelText: 'Nombre completo',
+                ),
+                // validator: (value) => registerTextFormFieldValidator(value),
+                onSaved: (newValue) {
+                  this.userRequestModel.emergencyContactName = newValue;
+                },
               ),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Parentesco'),
+                // validator: (value) => registerTextFormFieldValidator(value),
+                onSaved: (newValue) {
+                  this.userRequestModel.emergencyContactRelationship = newValue;
+                },
               ),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Telefono'),
+                // validator: (value) => registerTextFormFieldValidator(value),
+                onSaved: (newValue) {
+                  this.userRequestModel.emergencyContactPhone = newValue;
+                },
               ),
               SizedBox(
                 height: 25,
@@ -728,13 +802,17 @@ class _RegisterWidgetState extends State<RegisterWidget>
               ),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Dirección'),
+                // validator: (value) => registerTextFormFieldValidator(value),
+                onSaved: (newValue) {
+                  this.userRequestModel.address = newValue;
+                },
               ),
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Localidad'),
-              ),
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Barrio'),
-              ),
+              // TextFormField(
+              //   decoration: InputDecoration(labelText: 'Localidad'),
+              // ),
+              // TextFormField(
+              //   decoration: InputDecoration(labelText: 'Barrio'),
+              // ),
               SizedBox(
                 height: 25,
               ),
@@ -743,17 +821,19 @@ class _RegisterWidgetState extends State<RegisterWidget>
                 style: GeneralCons.generalTextStyle,
               ),
               DropdownButtonFormField<String>(
-                  hint: Text("Medio de transporte"),
-                  items:
-                      DataCons.transportTypeList.map<DropdownMenuItem<String>>(
-                    (String eachDocument) {
-                      return DropdownMenuItem<String>(
-                        value: eachDocument,
-                        child: Text(eachDocument),
-                      );
-                    },
-                  ).toList(),
-                  onChanged: null),
+                hint: Text("Medio de transporte"),
+                items: this.transportList.map<DropdownMenuItem<String>>(
+                  (GenericDataItemResponse eachTransport) {
+                    return DropdownMenuItem<String>(
+                      value: eachTransport.id.toString(),
+                      child: Text(eachTransport.name),
+                    );
+                  },
+                ).toList(),
+                onChanged: (value) {
+                  this.userRequestModel.transportFkUser = int.parse(value);
+                },
+              ),
               SizedBox(
                 height: 25,
               ),
@@ -781,8 +861,12 @@ class _RegisterWidgetState extends State<RegisterWidget>
               Row(
                 children: <Widget>[
                   Checkbox(
-                    value: false,
-                    onChanged: (value) {},
+                    value: this.userRequestModel.acceptTerms ?? false,
+                    onChanged: (value) {
+                      setState(() {
+                        this.userRequestModel.acceptTerms = value;
+                      });
+                    },
                   ),
                   Text(
                     "Acepto los términos y condiciones",
@@ -797,11 +881,15 @@ class _RegisterWidgetState extends State<RegisterWidget>
     ];
   }
 
-  next() {
+  next() async {
     if (this._formKeyList[currentStep].currentState.validate()) {
+      this._formKeyList[currentStep].currentState.save();
       currentStep + 1 != this.stepList.length
           ? goTo(currentStep + 1)
           : setState(() => complete = true);
+      if (complete) {
+        await processForm();
+      }
     }
   }
 
@@ -817,36 +905,71 @@ class _RegisterWidgetState extends State<RegisterWidget>
     }
   }
 
+  processForm() async {
+    try {
+      if (!this.userRequestModel.acceptTerms) {
+        _scaffoldKey.currentState.showSnackBar(
+          SnackBar(
+            content: Text('Por favor, acepte los terminos y condiciones'),
+          ),
+        );
+        complete = false;
+        return;
+      }
+      await registerService.registerUser(userRequestModel, healthRegistryModel);
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          content: Text("El usuario ha sido registrado correctamente."),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Ok'),
+              onPressed: () {
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                    LoginWidget.name, (Route<dynamic> route) => false);
+              },
+            ),
+          ],
+        ),
+      );
+    } on WsException catch (ex) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          content: Text(
+              "Registro incorrecto. compruebe los campos del formulario: ${ex.cause}"),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Ok'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        ),
+      );
+    } catch (ex) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          content: Text("Registro incorrecto."),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Ok'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        ),
+      );
+    }
+  }
+
   String registerTextFormFieldValidator(String value) {
     if (value.isEmpty) {
       return "Diligencie este campo";
     }
     return null;
-  }
-
-  List<Widget> returnComboboxYesNoByData(
-      {String yesString, String noString, bool data}) {
-    return [
-      Text(yesString),
-      Radio<yesNo>(
-        value: yesNo.yes,
-        groupValue: convertValueToYesNo(data),
-        onChanged: (value) {
-          setState(() {
-            data = convertYesNoToValue(value);
-          });
-        },
-      ),
-      Text(noString),
-      Radio<yesNo>(
-        value: yesNo.no,
-        groupValue: convertValueToYesNo(data),
-        onChanged: (value) {
-          setState(() {
-            data = convertYesNoToValue(value);
-          });
-        },
-      ),
-    ];
   }
 }

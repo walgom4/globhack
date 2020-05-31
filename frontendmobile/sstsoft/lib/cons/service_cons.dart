@@ -6,9 +6,12 @@ class ServiceCons{
   ///SSTSoft Login service URL repository
   static final LOGIN = "/api/auth/login/";
   ///SSTSoft Register service URL repository
+  static final REGISTER_USER = "/api/user/";
+  static final REGISTER_DAILY_FORM = "/api/healthRegister/";
   static final FIND_ALL_EPS = "/api/eps/";
   static final FIND_ALL_AREA = "/api/area/";
   static final FIND_ALL_GENDER = "/api/gender/";
   static final FIND_ALL_DOCUMENT_TYPE = "/api/idType/";
+  static final FIND_ALL_TRANSPORT = "/api/transport/";
 
 }
