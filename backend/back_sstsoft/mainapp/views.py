@@ -39,9 +39,9 @@ class areaViewSet(viewsets.ModelViewSet):
     def get_permissions(self):
         permission_classes = []
         if self.action == 'create':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAuthenticated]
         elif self.action == 'retrieve' or self.action == 'update' or self.action == 'partial_update' or self.action == 'destroy':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAuthenticated]
         elif self.action == 'list':
             permission_classes = [AllowAny]
         return [permission() for permission in permission_classes]
@@ -54,9 +54,9 @@ class epsViewSet(viewsets.ModelViewSet):
     def get_permissions(self):
         permission_classes = []
         if self.action == 'create':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAuthenticated]
         elif self.action == 'retrieve' or self.action == 'update' or self.action == 'partial_update':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAuthenticated]
         elif self.action == 'list' or self.action == 'destroy':
             permission_classes = [AllowAny]
         return [permission() for permission in permission_classes]
@@ -69,9 +69,9 @@ class genderViewSet(viewsets.ModelViewSet):
     def get_permissions(self):
         permission_classes = []
         if self.action == 'create':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAuthenticated]
         elif self.action == 'retrieve' or self.action == 'update' or self.action == 'partial_update':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAuthenticated]
         elif self.action == 'list' or self.action == 'destroy':
             permission_classes = [AllowAny]
         return [permission() for permission in permission_classes]
@@ -84,9 +84,9 @@ class transportViewSet(viewsets.ModelViewSet):
     def get_permissions(self):
         permission_classes = []
         if self.action == 'create':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAuthenticated]
         elif self.action == 'retrieve' or self.action == 'update' or self.action == 'partial_update':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAuthenticated]
         elif self.action == 'list' or self.action == 'destroy':
             permission_classes = [AllowAny]
         return [permission() for permission in permission_classes]
@@ -99,9 +99,9 @@ class idTypeViewSet(viewsets.ModelViewSet):
     def get_permissions(self):
         permission_classes = []
         if self.action == 'create':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAuthenticated]
         elif self.action == 'retrieve' or self.action == 'update' or self.action == 'partial_update':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAuthenticated]
         elif self.action == 'list' or self.action == 'destroy':
             permission_classes = [AllowAny]
         return [permission() for permission in permission_classes]
@@ -116,7 +116,7 @@ class healthRegisterViewSet(viewsets.ModelViewSet):
         if self.action == 'create':
             permission_classes = [AllowAny]
         elif self.action == 'retrieve' or self.action == 'update' or self.action == 'partial_update':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAuthenticated]
         elif self.action == 'list' or self.action == 'destroy':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]

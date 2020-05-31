@@ -8,21 +8,6 @@
 		{
 			"name": "login",
 			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "12345678",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "12345678",
-							"type": "string"
-						}
-					]
-				},
 				"method": "POST",
 				"header": [
 					{
@@ -285,6 +270,54 @@
 					"path": [
 						"api",
 						"idType",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get transport",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "12345678",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{server_url}}/api/transport/",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"api",
+						"transport",
 						""
 					]
 				}

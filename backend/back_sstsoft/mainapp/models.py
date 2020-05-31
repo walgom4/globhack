@@ -39,8 +39,7 @@ class transport(models.Model):
 
 #user model
 class User(AbstractUser):
-    identification = models.CharField(
-        blank=True, null=True, max_length=50, unique=True)
+    identification = models.CharField(max_length=50, unique=True, primary_key=True)
     username = models.CharField(
         blank=True, null=True, max_length=50, unique=True)
     idType_fk_user = models.ForeignKey(
