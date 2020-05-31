@@ -62,6 +62,10 @@ class LoginService {
     }
   }
 
+  Future<String> getUserName() async {
+    return await prefs.getString(userPreferences);
+  }
+
   Future<bool> userSessionAvailable() async {
     try {
       String token = await prefs.getString(tokenPreferences);

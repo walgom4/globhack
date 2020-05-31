@@ -29,6 +29,9 @@ class _PrincipalWidgetState extends State<PrincipalWidget>
   ///Validate if work journey is finished
   bool journeyStarted = true;
 
+  ///User name data
+  String userName = "";
+
   ///Login service reference
   LoginService loginService = LoginService();
 
@@ -57,6 +60,7 @@ class _PrincipalWidgetState extends State<PrincipalWidget>
   @override
   void afterFirstLayout(BuildContext context) async {
     this.journeyStarted = await loginService.returnIfUserJourneyIsStarted();
+    this.userName = await loginService.getUserName();
     setState(() {});
   }
 
@@ -74,11 +78,11 @@ class _PrincipalWidgetState extends State<PrincipalWidget>
           padding: EdgeInsets.zero,
           children: <Widget>[
             _createHeader(),
-            _createDrawerItem(
-              icon: Icons.settings,
-              text: "Configuración",
-              onTap: () {},
-            ),
+            // _createDrawerItem(
+            //   icon: Icons.settings,
+            //   text: "Configuración",
+            //   onTap: () {},
+            // ),
             _createDrawerItem(
               icon: Icons.close,
               text: "Cerrar sesión",
@@ -221,7 +225,7 @@ class _PrincipalWidgetState extends State<PrincipalWidget>
       margin: EdgeInsets.zero,
       padding: EdgeInsets.zero,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           SizedBox(
             height: 20,
@@ -234,7 +238,7 @@ class _PrincipalWidgetState extends State<PrincipalWidget>
             height: 20,
           ),
           Text(
-            "Nombre de usuario",
+            this.userName,
             style: TextStyle(
                 color: Colors.black,
                 fontSize: 20.0,
