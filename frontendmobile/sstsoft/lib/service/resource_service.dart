@@ -9,21 +9,6 @@ class RegisterService {
     this.client.setBaseUrl(ServiceCons.BASE_URL);
   }
 
-  Future<List<Resources>> findAllResources() async {
-    try {
-      dynamic response = await client.fetchGet(
-          ServiceCons.FIND_ALL_RESOURCES, Map<String, dynamic>());
-      List<Resources> resourceList = List();
-      for (var eachData in response) {
-        resourceList.add(Resources.fromJson(eachData));
-      }
-      return resourceList;
-    } catch (ex, stacktrace) {
-      print(stacktrace);
-      throw ex;
-    }
-  }
-  
   Future<Resources> findHandsVideo() async {
     try {
       dynamic response = await client.fetchGet(
