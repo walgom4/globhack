@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "9b396650-37d3-408f-8dd7-7225506e80a2",
-		"name": "globhack",
+		"name": "sstsoft",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -19,7 +19,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"1016031266\",\r\n    \"password\": \"1016031266\"\r\n}"
+					"raw": "{\r\n    \"username\": \"sstsoft\",\r\n    \"password\": \"sstsoft2020\"\r\n}",
+					"options": {
+						"raw": {}
+					}
 				},
 				"url": {
 					"raw": "{{server_url}}/api/auth/login/",
@@ -42,21 +45,6 @@
 				"disableBodyPruning": true
 			},
 			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "1016031266",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "1016031266",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [
 					{
@@ -64,11 +52,19 @@
 						"name": "Content-Type",
 						"type": "text",
 						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Token d5802d0e82775984db098c537dadfd0ecb48d16f",
+						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": ""
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
 				},
 				"url": {
 					"raw": "{{server_url}}/api/user/",
@@ -138,21 +134,6 @@
 				"disableBodyPruning": true
 			},
 			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "12345678",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "12345678",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [
 					{
@@ -160,11 +141,19 @@
 						"name": "Content-Type",
 						"type": "text",
 						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Token d5802d0e82775984db098c537dadfd0ecb48d16f",
+						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": ""
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
 				},
 				"url": {
 					"raw": "{{server_url}}/api/eps/",
@@ -186,21 +175,6 @@
 				"disableBodyPruning": true
 			},
 			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "12345678",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "12345678",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [
 					{
@@ -212,7 +186,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": ""
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
 				},
 				"url": {
 					"raw": "{{server_url}}/api/gender/",
@@ -282,21 +259,6 @@
 				"disableBodyPruning": true
 			},
 			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "12345678",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "12345678",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [
 					{
@@ -308,7 +270,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": ""
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
 				},
 				"url": {
 					"raw": "{{server_url}}/api/transport/",
@@ -330,21 +295,6 @@
 				"disableBodyPruning": true
 			},
 			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "12345678",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "12345678",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [
 					{
@@ -356,7 +306,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": ""
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
 				},
 				"url": {
 					"raw": "{{server_url}}/api/resources/",
@@ -373,23 +326,44 @@
 			"response": []
 		},
 		{
+			"name": "get questions",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "{{server_url}}/api/question/",
+					"host": [
+						"{{server_url}}"
+					],
+					"path": [
+						"api",
+						"question",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "save user",
 			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "12345678",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "12345678",
-							"type": "string"
-						}
-					]
-				},
 				"method": "POST",
 				"header": [
 					{
@@ -495,7 +469,7 @@
 							"key": "photo",
 							"description": "imagen de perfil del usuario",
 							"type": "file",
-							"src": ""
+							"src": []
 						},
 						{
 							"key": "transport_fk_user",
@@ -545,7 +519,10 @@
 							"description": "telefono contacto",
 							"type": "text"
 						}
-					]
+					],
+					"options": {
+						"formdata": {}
+					}
 				},
 				"url": {
 					"raw": "{{server_url}}/api/user/",
@@ -564,21 +541,6 @@
 		{
 			"name": "get daily form",
 			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "12345678",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "12345678",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [
 					{
@@ -588,10 +550,6 @@
 						"value": "application/json"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "{{server_url}}/api/healthRegister/",
 					"host": [
@@ -707,19 +665,19 @@
 							"key": "photo_temperature",
 							"description": "foto del termometro",
 							"type": "file",
-							"src": ""
+							"src": []
 						},
 						{
 							"key": "photo_workspace",
 							"description": "foto del area de trabajo",
 							"type": "file",
-							"src": ""
+							"src": []
 						},
 						{
 							"key": "photo_selfie",
 							"description": "foto tapabocas",
 							"type": "file",
-							"src": ""
+							"src": []
 						},
 						{
 							"key": "observations",
@@ -737,7 +695,7 @@
 							"key": "medical_file",
 							"description": "archivo medico",
 							"type": "file",
-							"src": ""
+							"src": []
 						},
 						{
 							"key": "ill",
@@ -766,54 +724,7 @@
 				}
 			},
 			"response": []
-		},
-		{
-			"name": "get questions",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "12345678",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "12345678",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "{{server_url}}/api/question/",
-					"host": [
-						"{{server_url}}"
-					],
-					"path": [
-						"api",
-						"question",
-						""
-					]
-				}
-			},
-			"response": []
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }
