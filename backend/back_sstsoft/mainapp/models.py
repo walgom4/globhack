@@ -40,7 +40,7 @@ class transport(models.Model):
 
 #user model
 class User(AbstractUser):
-    id = models.CharField(max_length=50, unique=True, primary_key=True)
+    id = models.AutoField(primary_key=True)
     username = models.CharField(
         blank=True, null=True, max_length=50, unique=True)
     idType_fk_user = models.ForeignKey(
@@ -74,8 +74,8 @@ class User(AbstractUser):
     is_sst = models.BooleanField(default=False)
     validated = models.BooleanField(default=False)
 
-    USERNAME_FIELD = 'id'
-    REQUIRED_FIELDS = ['username']
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['email']
 
     def __str__(self):
         return "{}".format(self.id)

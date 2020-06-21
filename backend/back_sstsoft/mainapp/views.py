@@ -34,9 +34,9 @@ class UserViewSet(viewsets.ModelViewSet):
         if self.action == 'create':
             permission_classes = [AllowAny]
         elif self.action == 'retrieve' or self.action == 'update' or self.action == 'partial_update' or self.action == 'destroy':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAdminUser]
         elif self.action == 'list':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAuthenticated]
 
         return [permission() for permission in permission_classes]
 
@@ -58,9 +58,9 @@ class areaViewSet(viewsets.ModelViewSet):
         if self.action == 'create':
             permission_classes = [AllowAny]
         elif self.action == 'retrieve' or self.action == 'update' or self.action == 'partial_update' or self.action == 'destroy':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAuthenticated]
         elif self.action == 'list':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
 
 class epsViewSet(viewsets.ModelViewSet):
@@ -74,11 +74,11 @@ class epsViewSet(viewsets.ModelViewSet):
     def get_permissions(self):
         permission_classes = []
         if self.action == 'create':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAdminUser]
         elif self.action == 'retrieve' or self.action == 'update' or self.action == 'partial_update':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAuthenticated]
         elif self.action == 'list' or self.action == 'destroy':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
 
 class genderViewSet(viewsets.ModelViewSet):
@@ -91,11 +91,11 @@ class genderViewSet(viewsets.ModelViewSet):
     # permisos
     def get_permissions(self):
         permission_classes = []
-        if self.action == 'create':
-            permission_classes = [AllowAny]
+        if self.action == 'create' or self.action == 'destroy':
+            permission_classes = [IsAdminUser]
         elif self.action == 'retrieve' or self.action == 'update' or self.action == 'partial_update':
-            permission_classes = [AllowAny]
-        elif self.action == 'list' or self.action == 'destroy':
+            permission_classes = [IsAuthenticated]
+        elif self.action == 'list':
             permission_classes = [AllowAny]
         return [permission() for permission in permission_classes]
 
@@ -109,11 +109,11 @@ class transportViewSet(viewsets.ModelViewSet):
     # permisos
     def get_permissions(self):
         permission_classes = []
-        if self.action == 'create':
-            permission_classes = [AllowAny]
+        if self.action == 'create' or self.action == 'destroy':
+            permission_classes = [IsAdminUser]
         elif self.action == 'retrieve' or self.action == 'update' or self.action == 'partial_update':
-            permission_classes = [AllowAny]
-        elif self.action == 'list' or self.action == 'destroy':
+            permission_classes = [IsAdminUser]
+        elif self.action == 'list':
             permission_classes = [AllowAny]
         return [permission() for permission in permission_classes]
 
@@ -127,11 +127,11 @@ class idTypeViewSet(viewsets.ModelViewSet):
     # permisos
     def get_permissions(self):
         permission_classes = []
-        if self.action == 'create':
-            permission_classes = [AllowAny]
+        if self.action == 'create' or self.action == 'destroy':
+            permission_classes = [IsAdminUser]
         elif self.action == 'retrieve' or self.action == 'update' or self.action == 'partial_update':
-            permission_classes = [AllowAny]
-        elif self.action == 'list' or self.action == 'destroy':
+            permission_classes = [IsAdminUser]
+        elif self.action == 'list':
             permission_classes = [AllowAny]
         return [permission() for permission in permission_classes]
 
@@ -152,11 +152,11 @@ class healthRegisterViewSet(viewsets.ModelViewSet):
     def get_permissions(self):
         permission_classes = []
         if self.action == 'create':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAuthenticated]
         elif self.action == 'retrieve' or self.action == 'update' or self.action == 'partial_update':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAuthenticated]
         elif self.action == 'list' or self.action == 'destroy':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
 
 class userHealthRegisterViewSet(viewsets.ModelViewSet):
@@ -176,11 +176,11 @@ class userHealthRegisterViewSet(viewsets.ModelViewSet):
     def get_permissions(self):
         permission_classes = []
         if self.action == 'create':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAuthenticated]
         elif self.action == 'retrieve' or self.action == 'update' or self.action == 'partial_update':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAuthenticated]
         elif self.action == 'list' or self.action == 'destroy':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
 
 class resourcesViewSet(viewsets.ModelViewSet):
@@ -192,12 +192,12 @@ class resourcesViewSet(viewsets.ModelViewSet):
     # permisos
     def get_permissions(self):
         permission_classes = []
-        if self.action == 'create':
-            permission_classes = [AllowAny]
+        if self.action == 'create' or self.action == 'destroy':
+            permission_classes = [IsAdminUser]
         elif self.action == 'retrieve' or self.action == 'update' or self.action == 'partial_update':
-            permission_classes = [AllowAny]
-        elif self.action == 'list' or self.action == 'destroy':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAdminUser]
+        elif self.action == 'list':
+            permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
 
 class entityViewSet(viewsets.ModelViewSet):
@@ -208,11 +208,11 @@ class entityViewSet(viewsets.ModelViewSet):
     # permisos
     def get_permissions(self):
         permission_classes = []
-        if self.action == 'create':
-            permission_classes = [AllowAny]
+        if self.action == 'create' or self.action == 'destroy':
+            permission_classes = [IsAdminUser]
         elif self.action == 'retrieve' or self.action == 'update' or self.action == 'partial_update':
-            permission_classes = [AllowAny]
-        elif self.action == 'list' or self.action == 'destroy':
+            permission_classes = [IsAdminUser]
+        elif self.action == 'list':
             permission_classes = [AllowAny]
         return [permission() for permission in permission_classes]
 
@@ -224,11 +224,11 @@ class entityTypeViewSet(viewsets.ModelViewSet):
     # permisos
     def get_permissions(self):
         permission_classes = []
-        if self.action == 'create':
-            permission_classes = [AllowAny]
+        if self.action == 'create' or self.action == 'destroy':
+            permission_classes = [IsAdminUser]
         elif self.action == 'retrieve' or self.action == 'update' or self.action == 'partial_update':
-            permission_classes = [AllowAny]
-        elif self.action == 'list' or self.action == 'destroy':
+            permission_classes = [IsAdminUser]
+        elif self.action == 'list':
             permission_classes = [AllowAny]
         return [permission() for permission in permission_classes]
 
@@ -241,12 +241,12 @@ class questionViewSet(viewsets.ModelViewSet):
     # permisos
     def get_permissions(self):
         permission_classes = []
-        if self.action == 'create':
-            permission_classes = [AllowAny]
+        if self.action == 'create' or self.action == 'destroy':
+            permission_classes = [IsAdminUser]
         elif self.action == 'retrieve' or self.action == 'update' or self.action == 'partial_update':
-            permission_classes = [AllowAny]
-        elif self.action == 'list' or self.action == 'destroy':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAdminUser]
+        elif self.action == 'list':
+            permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
 
 class answersViewSet(viewsets.ModelViewSet):
@@ -259,11 +259,11 @@ class answersViewSet(viewsets.ModelViewSet):
     def get_permissions(self):
         permission_classes = []
         if self.action == 'create':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAuthenticated]
         elif self.action == 'retrieve' or self.action == 'update' or self.action == 'partial_update':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAuthenticated]
         elif self.action == 'list' or self.action == 'destroy':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAdminUser]
         return [permission() for permission in permission_classes]
 
 class scheduleViewSet(viewsets.ModelViewSet):
@@ -275,10 +275,10 @@ class scheduleViewSet(viewsets.ModelViewSet):
     # permisos
     def get_permissions(self):
         permission_classes = []
-        if self.action == 'create':
-            permission_classes = [AllowAny]
+        if self.action == 'create' or self.action == 'destroy':
+            permission_classes = [IsAdminUser]
         elif self.action == 'retrieve' or self.action == 'update' or self.action == 'partial_update':
-            permission_classes = [AllowAny]
-        elif self.action == 'list' or self.action == 'destroy':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAdminUser]
+        elif self.action == 'list':
+            permission_classes = [IsAdminUser]
         return [permission() for permission in permission_classes]

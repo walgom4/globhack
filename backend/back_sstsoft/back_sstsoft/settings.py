@@ -84,11 +84,11 @@ WSGI_APPLICATION = 'back_sstsoft.wsgi.application'
 
 DATABASES = {
     'default': {
-        'NAME': 'globhack',
+        'NAME': 'sstsoft_db',
         'ENGINE': 'django.db.backends.postgresql',
-        'USER': 'globhack',
-        'PASSWORD': 'globhack',
-        'PORT':'5433',
+        'USER': 'sstsoft_us',
+        'PASSWORD': 'sstsoft2020',
+        'PORT':'5432',
         'HOST':'localhost'
     }
 }
@@ -141,28 +141,31 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/globhack_static/'
-MEDIA_ROOT = 'C:/Users/walgom/Documents/elxampp/htdocs/globhack_static/media'
-MEDIA_URL = 'http://b0e45052c003.ngrok.io/globhack_static/media/'
-STATIC_ROOT = 'C:/Users/walgom/Documents/elxampp/htdocs/globhack_static'
+# local conf
+# static files configuration local
+STATIC_URL = 'http://localhost/static_sstsoft/'
+MEDIA_ROOT = '/Applications/XAMPP/xamppfiles/htdocs/static_sstsoft/media/'
+MEDIA_URL = '/static_sstsoft/media/'
+STATIC_ROOT = '/Applications/XAMPP/xamppfiles/htdocs/static_sstsoft'
 STATICFILES_DIRS = (
-    'C:/Users/walgom/Documents/elxampp/htdocs/globhack_static/media/',
-    'C:/Users/walgom/Documents/elxampp/htdocs/globhack_static/media/users',
-    'C:/Users/walgom/Documents/elxampp/htdocs/globhack_static/media/health_register',
-    'C:/Users/walgom/Documents/elxampp/htdocs/globhack_static/media/resources',
+    '/Applications/XAMPP/xamppfiles/htdocs/static_sstsoft/media/',
+    '/Applications/XAMPP/xamppfiles/htdocs/static_sstsoft/media/users',
+    '/Applications/XAMPP/xamppfiles/htdocs/static_sstsoft/media/health_register',
+    '/Applications/XAMPP/xamppfiles/htdocs/static_sstsoft/media/resources',
 )
+# end static files configuration server
 
 # server conf
 # static files configuration server
-# STATIC_URL = 'http://api.oportunidadencasa.com/static/'
-# MEDIA_ROOT = '/home/walgom44/webapps/globhack_static/media/'
-# MEDIA_URL = '/static/media/'
-# STATIC_ROOT = '/home/walgom44/webapps/globhack_static'
+# STATIC_URL = 'http://sstsoft.webfactional.com/static_sstsoft/'
+# MEDIA_ROOT = '/home/sstsoft/webapps/static_sstsoft/media/'
+# MEDIA_URL = '/static_sstsoft/media/'
+# STATIC_ROOT = '/home/sstsoft/webapps/static_sstsoft'
 # STATICFILES_DIRS = (
-#     '/home/walgom44/webapps/globhack_static/media/',
-#     '/home/walgom44/webapps/globhack_static/media/users',
-#     '/home/walgom44/webapps/globhack_static/media/health_register',
-#     '/home/walgom44/webapps/globhack_static/media/resources',
+#     '/home/sstsoft/webapps/static_sstsoft/media/',
+#     '/home/sstsoft/webapps/static_sstsoft/media/users',
+#     '/home/sstsoft/webapps/static_sstsoft/media/health_register',
+#     '/home/sstsoft/webapps/static_sstsoft/media/resources',
 # )
 # end static files configuration server
 
@@ -174,7 +177,7 @@ REST_FRAMEWORK = {
     'COERCE_DECIMAL_TO_STRING': False,
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ),
     'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler',
 }
